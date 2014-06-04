@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0018)http://txomon.com/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<title>
+Blog de Javier Domingo     » txomon</title>
+
+<link rel="stylesheet" href="style.css" type="text/css" media="screen">
+<link rel="pingback" href="http://txomon.com/txomon/xmlrpc.php">
+
+<link rel="alternate" type="application/rss+xml" title="txomon » Feed" href="http://txomon.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="txomon » RSS de los comentarios" href="http://txomon.com/comments/feed/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://txomon.com/txomon/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://txomon.com/txomon/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 3.9.1">
+</head>
+
+<body class="home blog">
+<div id="page">
+
+    <div id="header">
+        <a href="./txomon-1_files/txomon-1.html" id="sitename"><!--fifty fifth &#64262;reet-->txomon</a>
+        
+        <ul id="nav"></ul> 
+
+        
+        <form method="get" id="searchform" action="./txomon-1_files/txomon-1.html">
+    <input type="text" value="" name="s" id="s">
+    <input type="image" id="searchsubmit" src="./txomon-1_files/search.gif">
+</form>
+    </div>
+<div id="content">
+
+	    
+        
+    <div class="post-96 post type-post status-publish format-standard hentry category-programacion category-tecnica" id="post-96">
+        <small class="caps">diciembre 29, 2012</small>
+        <a href="http://txomon.com/2012/12/29/backport-de-mod_authnz_ldap-de-apache-2-4-a-2-2/#respond" class="bubble" title="Comentarios en Backport de mod_authnz_ldap de apache 2.4 a 2.2">0</a>        
+        <h1>        <a href="http://txomon.com/2012/12/29/backport-de-mod_authnz_ldap-de-apache-2-4-a-2-2/" rel="bookmark" title="Permanent Link to Backport de mod_authnz_ldap de apache 2.4 a 2.2">Backport de mod_authnz_ldap de apache 2.4 a 2.2</a>
+        </h1>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/tecnica/programacion/" title="Ver todas las entradas en Programación" rel="category tag">Programación</a>, <a href="http://txomon.com/category/tecnica/" title="Ver todas las entradas en Tecnicismos" rel="category tag">Tecnicismos</a></small>
+        
+        <div class="entry">
+			<p>Lo primero decir que ha costado dios y ayuda.</p>
+<p>Como pro-tip, la siguiente vez que queráis compilar algo, mirad si tiene algo especial en el linkado. este modulo necesita -lldap y -llber -llber (2 veces o así lo dice apr-config –with-ldap).</p>
+<p>Otro inconveniente que me he encontrado es que han hecho un cambio brutal en los modulos auth, básicamente porque ya distinguen entre authn y authz (authentication y authorization respectivamente). Y eso en el código se nota demasiado.</p>
+<p>No tengo tiempo para documentar el proceso, pero puedo decir pestes de todo tipo sobre ubuntu. Odio que no tengan una rama experimental.</p>
+                                 
+                    </div>
+    </div>
+    
+        
+    <div class="post-81 post type-post status-publish format-standard hentry category-off-topic" id="post-81">
+        <small class="caps">diciembre 14, 2012</small>
+        <a href="http://txomon.com/2012/12/14/install-bugzilla-in-ubuntu-12-04/#respond" class="bubble" title="Comentarios en Install bugzilla in ubuntu 12.04">0</a>        
+        <h2>        <a href="http://txomon.com/2012/12/14/install-bugzilla-in-ubuntu-12-04/" rel="bookmark" title="Permanent Link to Install bugzilla in ubuntu 12.04">Install bugzilla in ubuntu 12.04</a>
+        </h2>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/off-topic/" title="Ver todas las entradas en Off-topic" rel="category tag">Off-topic</a></small>
+        
+        <div class="entry">
+			<h3>Introduction</h3>
+<p>Now will document the process to install bugzilla.</p>
+<p>I will follow several docs, which I wont put here because I am lazy atm.</p>
+<p>First of all, we create our folder, named consultas (I am spanish as many know and I dont want to be all the time doing transcriptions/translations).</p>
+<pre style="padding-left: 30px;">mkdir -p proyectos/consultas
+cd proyectos/consultas</pre>
+<h3>MariaDB system configuration and apache2 install</h3>
+<p>Then we start to configure the system to install mariadb (I don’t like anymore mysql), we go here&nbsp;<a href="https://downloads.mariadb.org/mariadb/repositories/">https://downloads.mariadb.org/mariadb/repositories/</a>&nbsp;and we just copy what they output for us.</p>
+<pre style="padding-left: 30px;"># MariaDB 5.5 repository list - created 2012-12-13 18:13 UTC
+# http://downloads.mariadb.org/mariadb/repositories/
+deb http://mirror2.hs-esslingen.de/mariadb/repo/5.5/ubuntu precise main
+deb-src http://mirror2.hs-esslingen.de/mariadb/repo/5.5/ubuntu precise main</pre>
+<p>And we put it in a new file in /etc/apt/sources.list/mariadb.list</p>
+<p>Now we run a command to add the key as we are told in (<a href="https://kb.askmonty.org/en/installing-mariadb-deb-files/">https://kb.askmonty.org/en/installing-mariadb-deb-files/</a>):</p>
+<pre style="padding-left: 30px;">sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db</pre>
+<p>And now we are prepared to install mariadb:</p>
+<pre style="padding-left: 30px;">sudo apt-get update &amp;&amp; sudo apt-get install mariadb-server apache2 -y
+#We enter here the root password...</pre>
+<h3>Installing bugzilla</h3>
+<p>I didn’t have very clear in which order must be done, but as I like seeing my results, I will make the installation before.</p>
+<p>So, we download bugzilla, untar it, and modify to fix it to be able to connect to gmail:</p>
+<pre style="padding-left: 30px;">wget http://ftp.mozilla.org/pub/mozilla.org/webtools/bugzilla-4.2.4.tar.gz
+tar xf bugzilla-4.2.4.tar.gz
+cd bugzilla-4.2.4
+vim Bugzilla/Mailer.pm #Edit line 166 to be: if($method eq "SMTP" || $method eq "Gmail"){</pre>
+<p>And now, we have to check about the perl modules, etc.</p>
+<pre style="padding-left: 30px;">./checksetup.pl --check-modules
+sudo cpan CPAN YAML Email::Send::Gmail
+sudo apt-get install libgd2-xpm-dev libapache2-mod-perl-dev libapache2-mod-auth-mysql patchutils# this is for GD, mod_perl and mysql. patchutils is for later use in configuring bugzilla
+sudo a2enmod headers expires # mod_headers and mod_expires dependencies have to be enabled
+sudo perl install-modules.pl --all #I don't care of this, just want bugzilla get installed!</pre>
+<p>In theory, you should have everything installed. Sample output here:</p>
+<blockquote><p>./checksetup.pl –check-modules<br>
+* This is Bugzilla 4.2.4 on perl 5.14.2<br>
+* Running on Linux 3.2.0-34-generic #53-Ubuntu SMP Thu Nov 15 10:48:16 UTC 2012</p>
+<p>Checking perl modules…<br>
+Checking for CGI.pm (v3.51) ok: found v3.62<br>
+Checking for Digest-SHA (any) ok: found v5.61<br>
+Checking for TimeDate (v2.21) ok: found v2.24<br>
+Checking for DateTime (v0.28) ok: found v0.78<br>
+Checking for DateTime-TimeZone (v0.71) ok: found v1.56<br>
+Checking for DBI (v1.614) ok: found v1.622<br>
+Checking for Template-Toolkit (v2.22) ok: found v2.24<br>
+Checking for Email-Send (v2.00) ok: found v2.198<br>
+Checking for Email-MIME (v1.904) ok: found v1.911<br>
+Checking for URI (v1.37) ok: found v1.59<br>
+Checking for List-MoreUtils (v0.22) ok: found v0.33<br>
+Checking for Math-Random-ISAAC (v1.0.1) ok: found v1.004</p>
+<p>Checking available perl DBD modules…<br>
+Checking for DBD-Pg (v1.45) not found<br>
+Checking for DBD-mysql (v4.001) ok: found v4.020<br>
+Checking for DBD-SQLite (v1.29) ok: found v1.37<br>
+Checking for DBD-Oracle (v1.19) not found</p>
+<p>The following Perl modules are optional:<br>
+Checking for GD (v1.20) ok: found v2.46<br>
+Checking for Chart (v2.1) ok: found v2.4.6<br>
+Checking for Template-GD (any) ok: found v1.56<br>
+Checking for GDTextUtil (any) ok: found v0.86<br>
+Checking for GDGraph (any) ok: found v1.44<br>
+Checking for MIME-tools (v5.406) ok: found v5.503<br>
+Checking for libwww-perl (any) ok: found v6.03<br>
+Checking for XML-Twig (any) ok: found v3.42<br>
+Checking for PatchReader (v0.9.6) ok: found v0.9.6<br>
+Checking for perl-ldap (any) ok: found v0.51<br>
+Checking for Authen-SASL (any) ok: found v2.16<br>
+Checking for RadiusPerl (any) ok: found v0.22<br>
+Checking for SOAP-Lite (v0.712) ok: found v0.715<br>
+Checking for JSON-RPC (any) ok: found v1.03<br>
+Checking for JSON-XS (v2.0) ok: found v2.33<br>
+Checking for Test-Taint (any) ok: found v1.06<br>
+Checking for HTML-Parser (v3.67) ok: found v3.69<br>
+Checking for HTML-Scrubber (any) ok: found v0.09<br>
+Checking for Encode (v2.21) ok: found v2.42_01<br>
+Checking for Encode-Detect (any) ok: found v1.01<br>
+Checking for Email-MIME-Attachment-Stripper (any) ok: found v1.316<br>
+Checking for Email-Reply (any) ok: found v1.202<br>
+Checking for TheSchwartz (any) ok: found v1.10<br>
+Checking for Daemon-Generic (any) ok: found v0.82<br>
+Checking for mod_perl (v1.999022) ok: found v2.000005<br>
+Checking for Apache-SizeLimit (v0.96) ok: found v0.96<br>
+Checking for mod_headers (any) ok<br>
+Checking for mod_expires (any) ok<br>
+Checking for mod_env (any) ok</p></blockquote>
+<p>So, with all this in OK state, we now continue to configure mariadb and apache.</p>
+<h3>Configure apache for use of ssl always</h3>
+<p>Now, I want to have everything under ssl. The first thing is to create all the redirects from 80 to 443, and set up virtualhosts, etc. For that, I create a file named delegación in /etc/apache2/sites-available with this content:</p>
+<blockquote><p>&lt;VirtualHost *:80&gt;<br>
+ServerName u102508.ehu.es<br>
+Redirect permanent / https://u102508.ehu.es/<br>
+&lt;/VirtualHost&gt;</p>
+<p>&lt;VirtualHost *:443&gt;<br>
+ServerName u102508.ehu.es<br>
+# Normal config here<br>
+DocumentRoot /var/www/</p>
+<p># SSL configuration here<br>
+SSLEngine On<br>
+SSLCertificateFile /etc/apache2/private/delegacion.crt<br>
+SSLCertificateKeyFile /etc/apache2/private/delegacion.key</p>
+<p>&lt;/VirtualHost&gt;</p></blockquote>
+<p>Create the certificate, move it to a private folder, I also disable default site, add a ServerName directive to the ports.conf file, and disable the NameVirtualHost *:80 in there also.</p>
+<pre style="padding-left: 30px;">openssl req -x509 -nodes -days 10000 -newkey rsa:8192 -keyout delegacion.key -out delegacion.crt
+sudo mkdir -p /etc/apache2/private
+sudo mv delegacion* /etc/apache2/private
+sudo chown -R www-data:www-data /etc/apache2/private
+sudo chmod 500 -R /etc/apache2/private
+sudo a2enmod ssl
+sudo a2ensite delegacion
+sudo a2dissite default
+sudo apachectl restart</pre>
+<p>And now in theory everything should work correctly. Now we will add bugzilla’s dir etc. to the apache conf, and also move the dir to where we will work:</p>
+<pre style="padding-left: 30px;">sudo mkdir -p /smb/web # Here we host the files
+cd ..
+sudo mv bugzilla-4.2.4 /smb/web/tracker
+sudo chown -R administrador:www-data /smb/web #administrador is root user</pre>
+<p>Also we modify /etc/apache/sites-available/delegacion to add the directory entry…</p>
+<blockquote><p>Alias /tracker “/smb/web/tracker/”<br>
+&lt;Directory /smb/web/tracker/&gt;<br>
+AddHandler cgi-script .cgi<br>
+Options +Indexes +ExecCGI +FollowSymLinks<br>
+Allow from all<br>
+DirectoryIndex index.cgi<br>
+AllowOverride Limit FileInfo Indexes<br>
+&lt;/Directory&gt;</p></blockquote>
+<p>And it is in theory complete. Now we have to configure the mariadb user/password and modify /smb/web/tracker/localconfig</p>
+<h3>MariaDB user creation</h3>
+<p>Now, we create the user bugs, and give him access:</p>
+<pre style="padding-left: 30px;">mysql -uroot -e "GRANT ALL ON bugs.* TO 'bugs'@'localhost' IDENTIFIED BY 'aspdofihapson1234o8y2e3';" -p</pre>
+<p>just enter root password and work done. Remember password (‘aspdofihapson1234o…’) because that is what we have to put in the localconfig file.</p>
+<p>So now edit localconfig, you will just need to change:</p>
+<ul>
+<li>$webservergroup=”www-data”</li>
+<li>$db_pass (to the pass we used)</li>
+<li>$db_sock = “/var/run/mysqld/mysqld.sock”</li>
+<li>$interdiffbin=”/usr/bin/interdiff”</li>
+</ul>
+<p>and now run sudo ./checksetup.pl, and ingress al what you need.</p>
+<p>And now, we are in theory done with the shell.</p>
+<h3>Configure Bugzilla and Gmail</h3>
+<p>Now we enter in the web page (for me u102508.ehu.es) and go straigth to configure email:</p>
+<ol>
+<li><span style="line-height: 13px;">mailfrom: gmail address &lt;whatever&gt;@gmail.com<br>
+</span></li>
+<li>smtpserver: smtp.gmail.com</li>
+<li>smtp_username: gmail address</li>
+<li>smtp_password: gmail password</li>
+</ol>
+<p>And click on save. Now go straight to LDAP:</p>
+<ol>
+<li><span style="line-height: 13px;">LDAPserver: ldaps://ldaps.lg.ehu.es/ in my case</span></li>
+<li>LDAPstarttls: off (for me)</li>
+<li>LDAPBaseDN:&nbsp;ou=people,dc=ehu,dc=es</li>
+<li>Didnt touch LDAPuidattribute nor LDAPmailattribute</li>
+<li>LDAPFilter: in my case, I just want the ones in my faculty =&gt; (SambaDomainName=345)</li>
+</ol>
+<p>And click on save. Now go to user authentication:</p>
+<ol>
+<li><span style="line-height: 13px;">user_verify_class: put LDAP the first (just move ldap with the up arrow, leave the other like they are)</span></li>
+<li>createemailregexp: set to blank ( =&gt; &nbsp;) ((XD))</li>
+</ol>
+<p>And its all done. Now you may have profit modifying all bugzilla to fix your needs</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                                 
+                    </div>
+    </div>
+    
+        
+    <div class="post-83 post type-post status-publish format-standard hentry category-off-topic" id="post-83">
+        <small class="caps">diciembre 13, 2012</small>
+        <a href="http://txomon.com/2012/12/13/reverse-engineering-the-authentication-of-your-university/#respond" class="bubble" title="Comentarios en Reverse engineering the authentication of your University">0</a>        
+        <h2>        <a href="http://txomon.com/2012/12/13/reverse-engineering-the-authentication-of-your-university/" rel="bookmark" title="Permanent Link to Reverse engineering the authentication of your University">Reverse engineering the authentication of your University</a>
+        </h2>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/off-topic/" title="Ver todas las entradas en Off-topic" rel="category tag">Off-topic</a></small>
+        
+        <div class="entry">
+			<p>Well, In order to use ldap in my university, I have to learn how ldap works.</p>
+<p>I first read LDAP intro,&nbsp;<a href="http://www.davidpashley.com/articles/ldap-basics.html">http://www.davidpashley.com/articles/ldap-basics.html</a></p>
+<p>And then, went to&nbsp;<a href="http://www.openldap.org/doc/admin23/">http://www.openldap.org/doc/admin23/</a></p>
+<p>There, in the quick start guide, I could get this command:</p>
+<pre style="padding-left: 30px;">ldapsearch -h adm.uni.com -x -b '' -s base '(objectclass=*)' namingContexts</pre>
+<p>I got the output:</p>
+<pre style="padding-left: 30px;"># extended LDIF
+#
+# LDAPv3
+# base &lt;&gt; with scope baseObject
+# filter: (objectclass=*)
+# requesting: namingContexts 
+#</pre>
+<pre style="padding-left: 30px;">#
+dn:
+namingContexts: DC=adm,DC=uni,DC=com
+namingContexts: CN=Configuration,DC=adm,DC=uni,DC=com
+namingContexts: CN=Schema,CN=Configuration,DC=adm,DC=uni,DC=com</pre>
+<pre style="padding-left: 30px;"># search result
+search: 2
+result: 0 Success</pre>
+<pre style="padding-left: 30px;"># numResponses: 2
+# numEntries: 1</pre>
+<p>So now, I continue reading…</p>
+<p>Well, at the end, I found that I had to ask for uid=&lt;username&gt;,ou=people,dc=uni,dc=com to the server ldaps.lg.uni.com</p>
+<p>There I can check a user exists, but I can’t auth him yet…</p>
+<p>Ok, I found the way. With this line I can query for the user’s info</p>
+<pre style="padding-left: 30px;">ldapsearch -x -H ldaps://ldaps.lg.uni.com/ -b ou=people,dc=uni,dc=com uid=jdomingo002</pre>
+<p>If I add this args:</p>
+<pre style="padding-left: 30px;">-D uid=jdomingo002,ou=people,dc=uni,dc=com -W</pre>
+<p>I would try to identify as jdomingo002. (prompting for password)</p>
+                                 
+                    </div>
+    </div>
+    
+        
+    <div class="post-78 post type-post status-publish format-standard hentry category-cuaderno-de-bitacora category-hallazgo category-tecnica" id="post-78">
+        <small class="caps">noviembre 29, 2012</small>
+        <a href="http://txomon.com/2012/11/29/how-to-use-nvidia-and-nouveau-in-same-debianubuntu-and-dont-get-nut/#respond" class="bubble" title="Comentarios en How to use nvidia and nouveau in same debian/ubuntu and don’t get nut">0</a>        
+        <h2>        <a href="http://txomon.com/2012/11/29/how-to-use-nvidia-and-nouveau-in-same-debianubuntu-and-dont-get-nut/" rel="bookmark" title="Permanent Link to How to use nvidia and nouveau in same debian/ubuntu and don’t get nut">How to use nvidia and nouveau in same debian/ubuntu and don’t get nut</a>
+        </h2>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/cuaderno-de-bitacora/" title="Ver todas las entradas en Cuaderno de bitácora" rel="category tag">Cuaderno de bitácora</a>, <a href="http://txomon.com/category/tecnica/hallazgo/" title="Ver todas las entradas en Hallazgos" rel="category tag">Hallazgos</a>, <a href="http://txomon.com/category/tecnica/" title="Ver todas las entradas en Tecnicismos" rel="category tag">Tecnicismos</a></small>
+        
+        <div class="entry">
+			<p>Buenas a los que sea que me leáis,</p>
+<p>Estoy escribiendo esto para que le sirva como una referencia a cualquiera, lo traduciría a ingles… de hecho igual lo escribo en ingles.</p>
+<p>I am going to explain how we can get nvidia driver and nouveau driver working in the same debian installation. I needed this because in the actual testing kernel (wheezy 3.2) my graphic card isn’t supported, and the nvidia driver has a bug when trying to start maya.</p>
+<p>Whatever you are here for, this is how:</p>
+<p>We all start with running nouveau driver, if you have very bad luck like I had, your system after installation doesn’t even boot. I switched to nomodeset run going to the grub menu entry (on boot) and adding in the linux line at the end (after quiet)</p>
+<blockquote>
+<pre>nomodeset</pre>
+</blockquote>
+<p>after that, I was able to boot. With that, I followed&nbsp;<a href="http://wiki.debian.org/NvidiaGraphicsDrivers#Installation-1">http://wiki.debian.org/NvidiaGraphicsDrivers</a>&nbsp;&nbsp;in the debian way installation. After that, and getting nut on how to create a xorg.conf file:</p>
+<blockquote>
+<pre>nvidia-xconfig -o xorg.conf</pre>
+</blockquote>
+<p>Yes, i know it was easy, but I started to read about a lot of solutions, and messed up. The idea is that after having the xorg.conf created, and in /etc/X11, I got it running.</p>
+<p>I just rebooted and it worked.</p>
+<p>Then, I found the bug that it didn’t allow me to open maya files (SIGSEGV in their libGl1.so dll)</p>
+<p>So I decided to go for a newer kernel (v3.6[1]) &nbsp;which also I had patched for work reasons, and compiled it. Well, you all must get aware that if you make a menuconfig, you&nbsp;<strong>have to be aware of enabling graphic drivers</strong>. I mean, go to graphic drivers, and remember to enable them:</p>
+<blockquote>
+<pre>Graphics support ---&gt;</pre>
+<pre style="padding-left: 30px;">&lt;M&gt; Direct Rendering Manager (XFree86 4.1.0 and higher DRI support) &nbsp;---&gt;</pre>
+<pre style="padding-left: 60px;">&lt;M&gt; &nbsp; Nouveau (nVidia) cards</pre>
+<pre style="padding-left: 60px;">[*] &nbsp; &nbsp; Support for backlight control #optional</pre>
+<pre style="padding-left: 60px;">[*] &nbsp; &nbsp; Build in Nouveau's debugfs support #optional but if you encounter errors, its easier like this to send bugs</pre>
+<pre style="padding-left: 30px;">{*} Support for frame buffer devices &nbsp;---&gt;</pre>
+<pre style="padding-left: 60px;">&lt;M&gt; &nbsp; nVidia Framebuffer Support # I saw this and enabled it just in case</pre>
+<pre style="padding-left: 90px;">[*] &nbsp; &nbsp; Enable DDC Support #same</pre>
+<pre style="padding-left: 90px;">[*] &nbsp; &nbsp; Lots of debug output #same</pre>
+<pre style="padding-left: 90px;">[*] &nbsp; &nbsp; Support for backlight control #same</pre>
+</blockquote>
+<p>&nbsp;</p>
+<p>I forgot to enable the first section (the real important in which you enable the driver nouveau) because I didn’t think about the meaning of &nbsp;Direct Rendering Manager, neither knew it was important, etc. So the case is I compiled and installed, and now I had the problem:</p>
+<p>How to switch between one and the other? the installation following the Debian wiki didn’t allow me to use nouveau if I didn’t uninstall nvidia one. So I started to research about it, asked a lot in #debian #debian-next etc. And babilen told me that the only thing that said xorg to use nvidia, was that xorg.conf file.</p>
+<p>So from there, the solution was simple, to switch from nvidia to nouveau:</p>
+<pre style="padding-left: 30px;">mv /etc/X11/xorg.conf /etc/X11/xorg.conf.nvidia</pre>
+<pre style="padding-left: 30px;">vim /etc/modprobe.d/nvidia-kernel-common.conf # here comment all the lines and add a line that blacklists nvidia ( blacklist nvidia )</pre>
+<pre style="padding-left: 30px;">update-alternatives --config glx #choose mesa</pre>
+<p>And now, you can reboot into nouveau. To change from nouveau to nvidia, mv the xorg.conf, unblacklist nvidia and blacklist nouveau (what you commented) and restore the other lines you commentes, and finally use update-alternatives command to use nvidia one. And reboot.</p>
+<p>I hope it helps anyone, just to not keep installing/uninstalling the nvidia driver.</p>
+<p>Cheers to anyone that really needs, and if you need help, I can help you, contact me on twitter (@txomon), or find my mail somewhere :D tip: &lt;domain&gt;@&lt;domain&gt;.com =) ]</p>
+<p>[1]: if I say a kernel is v3.6, its from linus’ repo, if I say it is 3.6, it is from linux-stable repo (they are different)</p>
+                                 
+                    </div>
+    </div>
+    
+        
+    <div class="post-69 post type-post status-publish format-standard hentry category-automatizacion category-cuaderno-de-bitacora category-hallazgo category-programacion category-tecnica" id="post-69">
+        <small class="caps">enero 11, 2012</small>
+        <a href="http://txomon.com/2012/01/11/cuaderno-de-bitacora/#respond" class="bubble" title="Comentarios en cuaderno-de-bitácora">0</a>        
+        <h2>        <a href="http://txomon.com/2012/01/11/cuaderno-de-bitacora/" rel="bookmark" title="Permanent Link to cuaderno-de-bitácora">cuaderno-de-bitácora</a>
+        </h2>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/tecnica/automatizacion/" title="Ver todas las entradas en Automatización" rel="category tag">Automatización</a>, <a href="http://txomon.com/category/cuaderno-de-bitacora/" title="Ver todas las entradas en Cuaderno de bitácora" rel="category tag">Cuaderno de bitácora</a>, <a href="http://txomon.com/category/tecnica/hallazgo/" title="Ver todas las entradas en Hallazgos" rel="category tag">Hallazgos</a>, <a href="http://txomon.com/category/tecnica/programacion/" title="Ver todas las entradas en Programación" rel="category tag">Programación</a>, <a href="http://txomon.com/category/tecnica/" title="Ver todas las entradas en Tecnicismos" rel="category tag">Tecnicismos</a></small>
+        
+        <div class="entry">
+			<p>He hecho muchas cosas hoy. Empezando ayer a las 23:50 después de llegar de casa de nerea (si tarda 10 mins ¬¬ ella sabe a que me refiero).</p>
+<p>Empecé&nbsp;a investigar sobre el <a href="http://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_string_matching_algorithm">algoritmo aho-corasick</a>, que según tenía entendido, era un modelo de Luis para el algoritmo. Aunque por lo que me he enterado más tarde, solo interesa la problemática del acceso a memoria compartida que utiliza por debajo el algoritmo. Por lo tanto, puedo directamente, hacer un testcase que haga eso en el Adviser y a correr. De todos modos, me he estudiado el algoritmo, ya que mi PFC y lo de Luis no es lo mismo, y he ideado unos cuantos métodos para hacer el algoritmo más rápido, aunque aún hay que probar mis varias teorias.</p>
+<p>Sea lo que sea, aún tengo que poner las cosas en Github, evidentemente, si hago algo va a ser sobre GPL, por que para mí el mundo libre… Ha sido de gran ayuda.</p>
+<p>He pasado toda la mañana haciendo cosas sobre el algoritmo, hasta después de comer. Que por cierto, les he dado la caca con mis ideas en gran medida. Y luego me he puesto a hacer cosas que tenía pendientes, por ejemplo, de la banda. He empezado a crear el repositorio del aho-corasick, pero ya seguiré. Lo cierto es que ahora hecho la vista hacia atrás y no se que he hecho.</p>
+<p>Mirando mi explorador, que si que sabe lo que he hecho, he estado hasta las 15:30 buscando cosas sobre aho-corasick, después he actualizado, a&nbsp;raíz&nbsp;de un <a href="http://sourceforge.net/projects/multifast/">código que he encontrado</a> sobre este algoritmo (en verdad a su licencia adjunta), mis conocimientos sobre <a href="http://www.gnu.org/licenses/why-not-lgpl.es.html">licencias</a> de lo que haga.</p>
+<p>Después, el chrome dice que he estado en IRC, hablando sobre una alternativa a <a href="http://www.openwrt.org/">OpenWRT</a>, <a href="http://freewrt.org/trac/">FreeWRT</a>, despué he asistido a una reunion de ubuntu qa (sí, estoy metido ahí). Y luego por último, me he puesto a mirar cosas sobre automatización, desde&nbsp;<a href="http://www.ironahk.net/">IronAHK</a>, luego Jenkins (mi gran coloso), hasta llegar a la automatización de Instalación de sistemas operativos, entonces, he empezado a caer en el fondo de un pozo que me llevaba a sistemas cada vez mejores hasta tocar fondo, Orchestra.</p>
+<p>Por ello, al final, he tenido que mandarle un correo al del CIDIR, Jesus, para comentarle lo de Orchestra y Armando por todo lo que he descubierto.</p>
+<p style="padding-left: 60px;">Buenas Armando,</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">Aclaro que no espero respuesta vía correo electrónico.</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">He asistido via IRC a la reunión de QA de ubuntu, y ha salido el tema de los tests de las isos, la automatización, y eso me ha recordad algunas cosas que se y que nos podrían venir bien. Antes de mandarte un mail con mis ideas, me he puesto a buscar y a refrescar el mundo sobre la distribución de sistemas operativos, instalación automatizada, y todas esas cosas de grandes empresas.</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">Y bueno, también ya de paso, he vuelto a darme con uno de mis grandes colosos que todavía me quedan por derrotar (hay muchos). Jenkins [1]. Es una plataforma para lanza pruebas, y que está muy muy especializada. Puede que cuando se hizo la arquitectura de pruebas no existiera, pero este programa es una pasada (y como he dicho, un coloso).</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">Esto lo he ido viendo a lo largo de mi corta vida de informática (4~5 años) en varios sitios, y funciona genial, al menos si lo sabes configurar, por que yo lo he intentado (también decir que no me puse en serio), y fracase.</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">Pero visto que me tengo que aprender la arquitectura de pruebas y como funciona, porque no, aprender a utilizar este programa? Al fin y al cabo, el Adviser en verdad no necesita toda la test-arch, de hecho, con solo el adviser me basto para hacer pruebas de captura (al menos hasta lo que se yo). Es cierto que necesita el Manager, los demonios y todas esas cosas…</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">Si puedo conseguir todo de un plumazo con Jenkins, por que no intentarlo? no creo que se tarde más de un día en aprender a dominarlo, y la opción de automatizar pruebas, desde que pongo una nueva&nbsp;versión&nbsp;en el repositorio hasta la ejecución del adviser, con resultados de pruebas y logs es demasiado tentadora para mí. Dicho esto, en mi tiempo libre, estudiaré como hacer esto.</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">Ya que estaba con esto, pues he seguido mirando, y he hablando con uno de QA de xubuntu, me ha comentado que se estaba rompiendo la cabeza con el jenkins que no lo entendía etc. (Debe ser mayor ya por lo que ha dicho) y eso me ha recordado que en los laboratorios de QA de ubuntu, tienen algún tipo de sistema para automatizar las pruebas de ISO, lo que significa, que tienen la capacidad de hasta instalar sistemas automatizadamente.</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">Y eso me ha llevado a algo sorprendente. Mucho más allá de la replicación de sistemas, Ubuntu, con su intención de introducirse en el mundo de los servidores, de los de verdad, ha desarrollado el tambien llamado&nbsp;<em>The Ubuntu Orchestra Project</em>, que para el común de los mortales se conoce como Orchestra. La carta de presentación[2] no deja lugar a dudas, es un pedazo de proyecto de tres pares. Lo mejor de todo es que está en desarrollo activo, que es software libre, y que me da ideas sobre lo que te he dicho de hacerle la vida más facil a Edu (y al resto de paso también) sobre la instalación de sistemas automatizada.</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">Pues bueno, esos son mis avances de hoy.</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">Javier Domingo</p>
+<p>&nbsp;</p>
+<p style="padding-left: 60px;">[1] Jenkins:&nbsp;<a href="https://wiki.jenkins-ci.org/display/JENKINS/Meet+Jenkins">https://wiki.jenkins-ci.org/display/JENKINS/Meet+Jenkins</a></p>
+<p style="padding-left: 60px;">[2] Orchestra:&nbsp;<a href="http://blog.dustinkirkland.com/2011/08/formal-introduction-to-ubuntu-orchestra.html">http://blog.dustinkirkland.com/2011/08/formal-introduction-to-ubuntu-orchestra.html</a></p>
+<pre style="padding-left: 90px;"></pre>
+<p>Y bueno, eso ha sido todo por hoy, marcho a donde Nerea,</p>
+<p>Agur!</p>
+                                 
+                    </div>
+    </div>
+    
+        
+    <div class="post-68 post type-post status-publish format-standard hentry category-off-topic tag-dadabik tag-gui tag-interface tag-mysql tag-vfront" id="post-68">
+        <small class="caps">octubre 25, 2011</small>
+        <a href="http://txomon.com/2011/10/25/vfront/#respond" class="bubble" title="Comentarios en Vfront">0</a>        
+        <h2>        <a href="http://txomon.com/2011/10/25/vfront/" rel="bookmark" title="Permanent Link to Vfront">Vfront</a>
+        </h2>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/off-topic/" title="Ver todas las entradas en Off-topic" rel="category tag">Off-topic</a></small>
+        
+        <div class="entry">
+			<p>Bueno, ahora estoy intentando encontrar algún tipo de interfaz para una base de datos. La idea es que sea facil de configurar. Habia empezado a hacer la interfaz en PHP y tenia intencion de hacer o integrarla de alguna manera con AJAX, JQuery, o tecnologias similares que me permitan hacerlo un poco más manejable para que no esté actualizando la página todo el rato.<br>
+No se me ocurre una forma facil de hacerlo. Podría desarrollar una aplicacion que consistiera en algo parecido a lo que existe en Vfront o en dadabik… Ya vere.. Comento (escribo) con lo que sea.</p>
+                                 
+            <p><strong>Tags:</strong> <a href="http://txomon.com/tag/dadabik/" rel="tag">dadabik</a>, <a href="http://txomon.com/tag/gui/" rel="tag">GUI</a>, <a href="http://txomon.com/tag/interface/" rel="tag">interface</a>, <a href="http://txomon.com/tag/mysql/" rel="tag">mysql</a>, <a href="http://txomon.com/tag/vfront/" rel="tag">vfront</a></p>        </div>
+    </div>
+    
+        
+    <div class="post-62 post type-post status-publish format-standard hentry category-off-topic" id="post-62">
+        <small class="caps">octubre 13, 2011</small>
+        <a href="http://txomon.com/2011/10/13/mariadb/#respond" class="bubble" title="Comentarios en MariaDB">0</a>        
+        <h2>        <a href="http://txomon.com/2011/10/13/mariadb/" rel="bookmark" title="Permanent Link to MariaDB">MariaDB</a>
+        </h2>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/off-topic/" title="Ver todas las entradas en Off-topic" rel="category tag">Off-topic</a></small>
+        
+        <div class="entry">
+			<p>Bueno, al final he migrado a mariadb… Y se me ha petado todo, ya que mysql esta en la 5.5.3 y mariadb en la 5.3.</p>
+<p>No tenía nada muy importante gracias a dios, y no se si me molestaré en poner todo otra vez como antes, ya que de todos modos, estoy utilizando de test, y el resto de cosas las tengo en el server oficial (txomon.com).</p>
+<p>Ahora marcho para clase a otra clase de bases de datos que está genial. Se aprende mucho la verdad. A ver que nos cuenta!</p>
+                                 
+                    </div>
+    </div>
+    
+        
+    <div class="post-39 post type-post status-publish format-standard hentry category-tecnica" id="post-39">
+        <small class="caps">octubre 2, 2011</small>
+        <a href="http://txomon.com/2011/10/02/git-vs-svn/#respond" class="bubble" title="Comentarios en Git vs SVN">0</a>        
+        <h2>        <a href="http://txomon.com/2011/10/02/git-vs-svn/" rel="bookmark" title="Permanent Link to Git vs SVN">Git vs SVN</a>
+        </h2>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/tecnica/" title="Ver todas las entradas en Tecnicismos" rel="category tag">Tecnicismos</a></small>
+        
+        <div class="entry">
+			<p>Pues como se puede apreciar en el titulo, si, esto es una comparativa. Lo primero es decir que git mola más, y lo segundo, que tengo que hacer una comparativa real de los dos para que sea un PFC xD.</p>
+<p>En estos momentos estoy intalando redmine. Y se antoja chungo. Sobretodo por que lo tengo que hacer en Hostgator. Además, tengo que aprender para que demonios sirve el ruby on rails y el ruby gems. Creo que son como administradores de modulos. Pero no me convence mucho esto de ruby on rails.</p>
+<p>De todos modos, hay tutoriales y esas cosas.</p>
+<p>Despues de ojear un poco con google, he encontrado que RoR es para hacer apps webs facil facil y mucho mas simple que con el resto de lenguajes. Pues nada, a seguir instalando redmine.</p>
+<p>Añadir a esto que me da una especie de… no se, mal rollete el redmine. Parece mucho y poco a la vez… ya veremos que tal sale.</p>
+                                 
+                    </div>
+    </div>
+    
+        
+    <div class="post-31 post type-post status-publish format-standard hentry category-off-topic" id="post-31">
+        <small class="caps">septiembre 27, 2011</small>
+        <a href="http://txomon.com/2011/09/27/hablando-del-pfc/#respond" class="bubble" title="Comentarios en Hablando del PFC">0</a>        
+        <h2>        <a href="http://txomon.com/2011/09/27/hablando-del-pfc/" rel="bookmark" title="Permanent Link to Hablando del PFC">Hablando del PFC</a>
+        </h2>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/off-topic/" title="Ver todas las entradas en Off-topic" rel="category tag">Off-topic</a></small>
+        
+        <div class="entry">
+			<p>Bueno, pues he hablado con Armando, y me ha dicho que es posible que se pueda hacer un PFC con todo lo de la gestión documental, etc. No tengo del todo claro como, pero creo conseguiré algo relacionado con el kernel o si no, gestión documental, que es lo que me mola.</p>
+<p>Desde luego, voy a utilizar git, aunque sea en un mal arreglo con el git svn… pero por lo menos, sabré utilizarlo. A ver si lo que me ha pedido armando le convence…</p>
+<p>&nbsp;</p>
+                                 
+                    </div>
+    </div>
+    
+        
+    <div class="post-20 post type-post status-publish format-standard hentry category-off-topic category-programacion category-tecnica tag-avances-del-dia tag-git tag-nqas tag-resumen tag-svn" id="post-20">
+        <small class="caps">septiembre 26, 2011</small>
+        <a href="http://txomon.com/2011/09/26/casi-acabado/#respond" class="bubble" title="Comentarios en Casi acabado">0</a>        
+        <h2>        <a href="http://txomon.com/2011/09/26/casi-acabado/" rel="bookmark" title="Permanent Link to Casi acabado">Casi acabado</a>
+        </h2>        
+        <small>By <a href="http://txomon.com/author/txomon/" title="Entradas de txomon" rel="author">txomon</a> in <a href="http://txomon.com/category/off-topic/" title="Ver todas las entradas en Off-topic" rel="category tag">Off-topic</a>, <a href="http://txomon.com/category/tecnica/programacion/" title="Ver todas las entradas en Programación" rel="category tag">Programación</a>, <a href="http://txomon.com/category/tecnica/" title="Ver todas las entradas en Tecnicismos" rel="category tag">Tecnicismos</a></small>
+        
+        <div class="entry">
+			<p>Bueno, pues parece que ya casi he acabado el sistema de administración del control de versiones.</p>
+<p>Es muy muy malo, pero es una forma eficaz de poder empezar a trabajar, ya que hay otras prioridades.</p>
+<p>Lo que hace este script en python, es primero comprobar todos los grupos que existen en:&nbsp;<code>/etc/groups</code> y mirar cuales tienes svn en su nombre, y empiezan a partir del 9999 &nbsp;(el gid). Despues mira los directorios en la raiz que se halla especificado (mejor que sea en / y no por ahí suelto, por que los grupos se crean con los path completos.</p>
+<p>Después de encontrar las diferencias, se dispone a corregir. Como es mas fácil crear una carpeta que un grupo, pues mira todas las carpetas que hay, y crea los grupos correspondientes. Si luego ve que hay un grupo que sobra, pregunta para borrarlo.</p>
+<p>Una vez visto que es consistente, se dispone a poner los permisos a todas las carpetas. Como no me quería andar con milongas, he hecho que cada vez que se ejecute, ponga en orden todas los <code>chown</code> de las carpetas y que cambie los permisos a g+s de tal manera que todo aquel que haga algo en el repositorio, imaginando que la prevención del umask ha sido salteada, pueda ser arreglada para el resto. Eso me falta por comprobar.</p>
+<p>Saber si de verdad funciona todo este garigay. Por que en verdad os digo que no hay nadie con más ganas de acabar de programar algo para un control de versiones que no me gusta.</p>
+<p>Por cierto, los repositorios se crean con <code>svn-admin create </code> y el servidor es <code>svnserve -t </code> o eso espero que sea.</p>
+<p>De todos modos, me voy a sobar que en 6 horas me levanto.</p>
+<p>Resumen del día más o menos hecho.</p>
+<p>Bueno, en verdad falta añadir que he estado haciendo problemas de TC y que son horribles y tengo mogollón de dudas, por lo que mañana intentaré encontrar a Luis y pedirle ayuda (Luis: un tio muy majo que da una asignatura que te deja majo, pero interesante eso si)</p>
+                                 
+            <p><strong>Tags:</strong> <a href="http://txomon.com/tag/avances-del-dia/" rel="tag">avances del dia</a>, <a href="http://txomon.com/tag/git/" rel="tag">git</a>, <a href="http://txomon.com/tag/nqas/" rel="tag">NQaS</a>, <a href="http://txomon.com/tag/resumen/" rel="tag">resumen</a>, <a href="http://txomon.com/tag/svn/" rel="tag">svn</a></p>        </div>
+    </div>
+    
+        
+    <div class="navigation">
+        <div class="alignleft"><a href="http://txomon.com/page/2/">Older Posts</a></div>
+        <div class="alignright"></div>
+    </div>
+    
+    
+</div>
+
+<div id="sidebar">
+    <ul>
+        
+        
+    
+    <li class="categories"><h4>Categories</h4><ul>	<li class="cat-item cat-item-21"><a href="http://txomon.com/category/cuaderno-de-bitacora/" title="Ver todas las entradas archivadas en Cuaderno de bitácora">Cuaderno de bitácora</a> (2)
+</li>
+	<li class="cat-item cat-item-1"><a href="http://txomon.com/category/off-topic/" title="El off-topic de toda la vida">Off-topic</a> (6)
+</li>
+	<li class="cat-item cat-item-3"><a href="http://txomon.com/category/tecnica/" title="Posts técnicos o que no son de interes general (normalmente)">Tecnicismos</a> (7)
+<ul class="children">
+	<li class="cat-item cat-item-20"><a href="http://txomon.com/category/tecnica/automatizacion/" title="Ver todas las entradas archivadas en Automatización">Automatización</a> (1)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://txomon.com/category/tecnica/hallazgo/" title="Cosas que encuentro y que son interesantes">Hallazgos</a> (3)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://txomon.com/category/tecnica/programacion/" title="Sub categoria de programación">Programación</a> (4)
+</li>
+</ul>
+</li>
+</ul></li>    
+    <li>
+        <h4>Archives</h4>
+        <ul>	<li><a href="http://txomon.com/2012/12/">diciembre 2012</a>&nbsp;(3)</li>
+	<li><a href="http://txomon.com/2012/11/">noviembre 2012</a>&nbsp;(1)</li>
+	<li><a href="http://txomon.com/2012/01/">enero 2012</a>&nbsp;(1)</li>
+	<li><a href="http://txomon.com/2011/10/">octubre 2011</a>&nbsp;(3)</li>
+	<li><a href="http://txomon.com/2011/09/">septiembre 2011</a>&nbsp;(4)</li>
+</ul>
+    </li>
+    
+        
+    <li><h4>Meta</h4>
+        <ul>
+			            <li><a href="http://txomon.com/txomon/wp-login.php">Acceder</a></li>
+            <li><a href="http://www.tammyhartdesigns.com/">Custom WordPress Design</a></li>
+            <li><a href="http://wordpress.org/">WordPress</a></li>
+                    </ul>
+    </li>
+    
+        </ul>
+</div>
+
+
+<div class="clear"></div>
+
+<div id="footer">
+
+	<div class="alignright">
+    	<a href="http://txomon.com/#page" class="top">Top</a>
+    	<a href="http://txomon.com/feed/" class="rss">RSS</a>
+    	<a href="./txomon-1_files/txomon-1.html" class="home">Home</a>
+    </div>
+
+<a href="http://www.tammyhartdesigns.com/fifty-fifth-street">Fifty Fifth Street</a> theme by <a href="http://www.tammyhartdesigns.com/">Tammy Hart Designs</a><br>
+Powered by <a href="http://www.wordpress.org/">WordPress</a>
+</div>
+
+</div>
+
+		
+
+</body></html>
