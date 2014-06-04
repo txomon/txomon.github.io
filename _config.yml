@@ -2,4 +2,5 @@ name: txomon
 author: Javier Domingo Cansino
 url: http://txomon.github.io/
 permalink: /:year/:month/:day/:title/
+markdown: kramdown
 paginate: 10
