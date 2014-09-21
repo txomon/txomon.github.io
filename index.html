@@ -6,7 +6,7 @@ title: txomon
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
   <head>
     <title>txomon blog</title>
-    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/style.css" type="text/css" media="screen">
   </head>
   <body class="home blog">
     <div id="page">
@@ -22,23 +22,23 @@ title: txomon
             </div>
           </div>
         {% endfor %}
+        <!-- Pagination links -->
+        {% if paginator.previous_page or paginator.next_page %}
+          <div class="navigation">
+            {% if paginator.previous_page %}
+              <div class="alignleft">
+                <a href="{{ paginator.previous_page_path }}" class="previous">Newer Posts</a>
+              </div>
+            {% endif %}
+            <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+            {% if paginator.next_page %}
+              <div class="alignright">
+                <a href="{{ paginator.next_page_path }}" class="next">Older Posts</a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
-      <!-- Pagination links -->
-      {% if paginator.previous_page or paginator.next_page %}
-        <div class="navigation">
-          {% if paginator.previous_page %}
-            <div class="alignleft">
-              <a href="/page{{ paginator.previous_page }}" class="previous">Newer Posts</a>
-            </div>
-          {% endif %}
-          <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-          {% if paginator.next_page %}
-            <div class="alignright">
-              <a href="/page{{ paginator.next_page }}" class="next">Older Posts</a>
-            </div>
-          {% endif %}
-        </div>
-      {% endif %}
       {% include navigation.html %}
       <div class="clear"></div>
       {% include footer.html %}
