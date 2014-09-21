@@ -2,30 +2,46 @@
 layout: default
 title: txomon
 ---
-{% include header.html %}
-
-<!-- This loops through the paginated posts -->
-{% for post in paginator.posts %}
-  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-  <p class="author">
-    <span class="date">{{ post.date }}</span>
-  </p>
-  <div class="content">
-    {{ post.content }}
-  </div>
-{% endfor %}
-
-<!-- Pagination links -->
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="/page{{ paginator.previous_page }}" class="previous">Previous</a>
-  {% endif %}
-  {% if paginator.previous_page or paginator.next_page %}
-  <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  {% endif %}
-  {% if paginator.next_page %}
-    <a href="/page{{ paginator.next_page }}" class="next">Next</a>
-  {% endif %}
-</div>
-
-{% include footer.html %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+  <head>
+    <title>txomon blog</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+  </head>
+  <body class="home blog">
+    <div id="page">
+      {% include header.html %}
+      <!-- This loops through the paginated posts -->
+      <div id="content">
+        {% for post in paginator.posts %}
+          <div class="post type-post status-publish format-standard hentry" id="content">
+            <small class="caps">{{ post.date }}</small>
+            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            <div class="entry">
+              {{ post.content }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <!-- Pagination links -->
+      {% if paginator.previous_page or paginator.next_page %}
+        <div class="navigation">
+          {% if paginator.previous_page %}
+            <div class="alignleft">
+              <a href="/page{{ paginator.previous_page }}" class="previous">Newer Posts</a>
+            </div>
+          {% endif %}
+          <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+          {% if paginator.next_page %}
+            <div class="alignright">
+              <a href="/page{{ paginator.next_page }}" class="next">Older Posts</a>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% include navigation.html %}
+      <div class="clear"></div>
+      {% include footer.html %}
+    </div>
+  </body>
+</html>
