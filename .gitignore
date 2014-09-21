@@ -1,1 +1,3 @@
 _site/
+.metadata/
+blog.sublime-*

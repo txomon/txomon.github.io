@@ -1,0 +1,102 @@
+---
+layout: post
+title: Como crear tu propia CA
+date: 2012-05-26 21:05:44.000000000 +02:00
+categories:
+- Off-topic
+tags: []
+status: draft
+type: post
+published: false
+meta:
+  _edit_last: '1'
+author:
+  login: txomon
+  email: txomon1@gmail.com
+  display_name: txomon
+  first_name: ''
+  last_name: ''
+---
+<p>Bueno, pues me he decidido a escribir este artículo por una razón. Que la gente no se vuelva loca buscando por internet como yo he hecho. No voy a discutir las ventajas de pasarse al SSL, y voy a ir al grano.</p>
+<p>En primer lugar, necesitamos tener instalada la librería y los comandos de openssl. Después, ya solo tienes que elegir el sitio en el que quieres poner tu AC (autoridad de certificación, CA en adelante).</p>
+<p>Ten en cuenta que tiene que ser un sitio de máxima seguridad, ya que si tu clave privada de la CA se ve comprometida, eso es irreparable. Tendrías que cambiar todos los ordenadores en los que hayas instalado el citado certificado de CA, y recrear todos los certificados que hayas creado.</p>
+<p>Antes de nada, un pequeño consejo y una aclaración. Ten siempre a mano los docs de openssl ( <a href="http://www.openssl.org/docs/apps/openssl.html">http://www.openssl.org/docs/apps/openssl.html</a> ), y si ves que los documentos son de hace 10 años, no te asustes, que casi seguro que siguen siendo válidos.</p>
+<h1>Creación de la carpeta de CA</h1>
+<p>Pues allá vamos. Hay dos maneras de hacer las cosas actualmente en openssl, y no tiene mucha pinta de cambiar. Una a mano, y otra semiautomática. Como no queremos tener que hacerlo todo a mano, vamos a dejar que se encargue él de lo que pueda.</p>
+<p>Para empezar, ya tienes que haber elegído la carpeta en la que vas a poner tu CA. Ten en cuenta que tiene que tener backups (depende del trote que le des, cada vez que haya cambios o periodicamente) y que tienen que ser protegidos. Ahí, monta el siguiente esquema de directorios:</p>
+<blockquote>
+<pre>./                          # Esta es la ruta en la que has decidido poner tu CA</pre>
+<pre>./private/                  # Aquí vamos a guardar la clave privada del certificado</pre>
+<pre>./newcerts/                 # Aquí guardamos los certificados expedidos,</pre>
+<pre>                            # pero nosotros no tocaremos la carpeta una vez creada</pre>
+</blockquote>
+<p>La idea básica es que nosotros, utilizando la clave privada que hay en private/, crearemos un certificado firmando nuestra clave pública con nuestra clave privada. Esto significará que el certificado es certificado por sí mismo, lo que viene a ser una CA (entidad que se autentica a sí misma). No depende de ningún tercero.</p>
+<p>Esta es la razón por la que a la hora de querer que los clientes no encuentren extrañas nuestros certificados, debemos hacer que tenga como Autoridad Certificadora nuestro certificado (root).</p>
+<p>Ahora, vamos a crear unos cuantos archivos que nos serán necesarios para que el comando semiautomático funcione correctamente.</p>
+<p>El primero, es crear un archivo ./serial. Este archivo, como dice el nombre, tiene algo que ver con un número de serie. Y en caso de que te preguntes que es, solo te diré que todos los certificados emitidos por una CA llevan un número de serie único. De esta manera, luego al hacer una lista de certificados revocados, hay una forma en la que identificar a los certificados de una manera inequívoca.</p>
+<p>Por lo tanto creamos en ./ el archivo <em>serial</em> en el que pondremos un número por el que queramos empezar los certificados. Yo empezé por el 1, pero este hay que ponerlo de una manera extraña (por alguna razón que desconozco), algo como "0000001". deja que esa sea la única línea en el archivo.</p>
+<p>Después vamos a crear el archivo ./index.txt este vale para ir guardando todos los certificados que se han firmado, con sus correspondientes peticiones. Lo más importante es que ese archivo esté vacío (al principio). Basta con hacer un touch ./index.txt</p>
+<p>Y por el momento, ya tenemos casi preparado el directorio. En teoría, ya lo tenemos preparado, pero como soy un poco mío, me gusta que todas las cosas necesarias estén en el mismo sitio para que al hacer un backup/restore no pierda información vital.</p>
+<p>El siguiente paso, trata de crear un archivo de configuración para nuestra entidad certificadora</p>
+<p>&nbsp;</p>
+<h1>Creación del archivo de configuración</h1>
+<p>Aqui vamos a crear el archivo de configuración línea a línea.</p>
+<p>Lo primero que vamos a hacer es crear la sección default del CA.</p>
+<blockquote>
+<pre># OpenSSL configuration file</pre>
+<pre># Voy a separar las diferentes partes entre sí por 3 filas de almohadillas ( ca, request etc.)</pre>
+<pre># y las diferentes configuraciones 2 filas de almohadillas y las secciones suplementarias a</pre>
+<pre># cada configuración, por 1 fila.
+
+</pre>
+<pre># La única variable global va a ser esta. Tiene que señalar al directorio en el que se está</pre>
+<pre># Se tiene que poner el valor de PWD, sin la barra al final, ej: /home/txomon/.sslca</pre>
+<pre># Como mi configuración la tengo hecha en una unidad montada, no me puedo permitir asignarle</pre>
+<pre># una ruta absoluta, pero yo lo recomiendo, para que así todo lo que se haga, no quepa duda de</pre>
+<pre># que puede fallar por esto. Tener una ruta relativa tiene el problema de que es relativa al</pre>
+<pre># directorio del usuario, lo que es un problemón.</pre>
+<pre>dir = .</pre>
+<pre>###############################################################################################</pre>
+<pre>###############################################################################################</pre>
+<pre>###############################################################################################</pre>
+<pre></pre>
+<pre># Esta es la sección que se lee cuando se utiliza el comando ca en ella se especifican algunas</pre>
+<pre># cosas, pero la única que nos vale es default_ca</pre>
+<pre>[ ca ]</pre>
+<pre>default_ca = CA_default # cuando no se especifique una sección de referencia, se utilizará esta</pre>
+<pre>###############################################################################################</pre>
+<pre>###############################################################################################</pre>
+<pre># Esta es la sección que será llamada por defecto (por que está especificada en [ca])</pre>
+<pre>[ CA_default ]</pre>
+<pre># El archivo en el que se va a guardar el último número de serie expedido</pre>
+<pre>serial = $dir/serial</pre>
+<pre># El archivo que se va a utilizar como base de datos para guardar los certificados expedidos</pre>
+<pre>database = $dir/index.txt</pre>
+<pre># El directorio en el que se van a guardar los certificados expedidos</pre>
+<pre>new_certs_dir = $dir/certs</pre>
+<pre># El certificado de la CA autofirmado.</pre>
+<pre>certificate = $dir/ca-certificate.pem</pre>
+<pre># La clave privada de la CA, a proteger con la máxima seguridad</pre>
+<pre>private_key = $dir/private/ca-key.pem</pre>
+<pre># Los días por los que el certificado que se expida será válido</pre>
+<pre>default_days = 730 # dos años de 365 días</pre>
+<pre># El algoritmo de checksum que se va a utilizar de la clave pública para</pre>
+<pre># despues firmarlo. Los tipos están documentados en el man de openssl</pre>
+<pre># MESSAGE DIGEST COMMANDS</pre>
+<pre>default_md = sha512 # Este es el que más me gusta (más largo, menos colisiones)</pre>
+<pre># Esta opción vale para especificar si hay que respetar o no el orden de los CN (common name)</pre>
+<pre># básicamente es compatibilidad hacia atrás. Como no nos molesta, lo dejamos en yes</pre>
+<pre>preserve = yes</pre>
+<pre># Esta opción es para la inclusión o no de los emails que vienen en las request.</pre>
+<pre># Hasta el momento no he encontrado una justificación, pero si lo recomiendan, supongo yo que</pre>
+<pre># por algo será.</pre>
+<pre>email_in_dn = no</pre>
+<pre># Aquí, se podría especificar como queremos que se nos muestren los requests. Como no tengo</pre>
+<pre># ningún tipo de referencia, me limitaré a dejar aquí los campos comentados. Las opciones que</pre>
+<pre># admiten estos campos son las del man x509, en las secciones:</pre>
+<pre># NAME OPTIONS para</pre>
+<pre># nameopt = ca_default #por pillar uno</pre>
+<pre># TEXT OPTIONS para</pre>
+<pre># certopt = ca_default</pre>
+<pre># Este es ya el último apartado, en él, vamos definir las políticas de</pre>
+</blockquote>

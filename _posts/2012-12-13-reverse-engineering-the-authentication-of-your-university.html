@@ -1,0 +1,50 @@
+---
+layout: post
+title: Reverse engineering the authentication of your University
+date: 2012-12-13 17:40:12.000000000 +01:00
+categories:
+- Off-topic
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: txomon
+  email: txomon1@gmail.com
+  display_name: txomon
+  first_name: ''
+  last_name: ''
+---
+<p>Well, In order to use ldap in my university, I have to learn how ldap works.</p>
+<p>I first read LDAP intro, <a href="http://www.davidpashley.com/articles/ldap-basics.html">http://www.davidpashley.com/articles/ldap-basics.html</a></p>
+<p>And then, went to <a href="http://www.openldap.org/doc/admin23/">http://www.openldap.org/doc/admin23/</a></p>
+<p>There, in the quick start guide, I could get this command:</p>
+<pre style="padding-left: 30px;">ldapsearch -h adm.uni.com -x -b '' -s base '(objectclass=*)' namingContexts</pre>
+<p>I got the output:</p>
+<pre style="padding-left: 30px;"># extended LDIF
+#
+# LDAPv3
+# base &lt;&gt; with scope baseObject
+# filter: (objectclass=*)
+# requesting: namingContexts 
+#</pre>
+<pre style="padding-left: 30px;">#
+dn:
+namingContexts: DC=adm,DC=uni,DC=com
+namingContexts: CN=Configuration,DC=adm,DC=uni,DC=com
+namingContexts: CN=Schema,CN=Configuration,DC=adm,DC=uni,DC=com</pre>
+<pre style="padding-left: 30px;"># search result
+search: 2
+result: 0 Success</pre>
+<pre style="padding-left: 30px;"># numResponses: 2
+# numEntries: 1</pre>
+<p>So now, I continue reading...</p>
+<p>Well, at the end, I found that I had to ask for uid=&lt;username&gt;,ou=people,dc=uni,dc=com to the server ldaps.lg.uni.com</p>
+<p>There I can check a user exists, but I can't auth him yet...</p>
+<p>Ok, I found the way. With this line I can query for the user's info</p>
+<pre style="padding-left: 30px;">ldapsearch -x -H ldaps://ldaps.lg.uni.com/ -b ou=people,dc=uni,dc=com uid=jdomingo002</pre>
+<p>If I add this args:</p>
+<pre style="padding-left: 30px;">-D uid=jdomingo002,ou=people,dc=uni,dc=com -W</pre>
+<p>I would try to identify as jdomingo002. (prompting for password)</p>
