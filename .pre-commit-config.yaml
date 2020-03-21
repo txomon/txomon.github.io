@@ -1,10 +1,27 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0
+  - repo: https://github.com/txomon/pre-commit-hooks
+    rev: bc56a91fc127b44bfc1c88179459f313c24e9924
     hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-yaml
-    -   id: check-added-large-files
+      - id: text-command-always
+        args:
+          - "-c"
+          - hugo && git add categories/ css/ index.* sitemap.xml tags/ post/
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-byte-order-marker
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: check-xml
+      - id: detect-private-key
+      - id: mixed-line-ending
+      - id: sort-simple-yaml

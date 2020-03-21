@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/tags/blog/</link>
+    <description>Recent content in Blog on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 Mar 2020 17:38:31 +0100</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>From Jekyll to Hugo</title>
+      <link>http://txomon.com/post/2020/03/21/from-jekyll-to-hugo/</link>
+      <pubDate>Sat, 21 Mar 2020 17:38:31 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2020/03/21/from-jekyll-to-hugo/</guid>
+      <description>I&amp;rsquo;m taking this time to clean up the stuff I have, and I have decided to put in a bit better shape my blog.
+I&amp;rsquo;m quite a bit tired of jekyll, the part of using ruby never convinced me, and documentation sucked, so I decided to move to Hugo.
+Just in case you are wondering why documentation sucked, it&amp;rsquo;s because content is all mixed, pro tip:
+  Anyway, the process has been kind-a terrible, because hugo&amp;rsquo;s docs are,&amp;hellip; well, they hold more information but they are also completely mixed, getting started has a full reference of the documentation, it doesn&amp;rsquo;t hold you by the hand on how to build a site&amp;hellip; There are tons of things that I have been looking at examples just to be able to pinpoint them.</description>
+    </item>
+    
+  </channel>
+</rss>

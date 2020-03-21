@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tecnicismos on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/categories/tecnicismos/</link>
+    <description>Recent content in Tecnicismos on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Apr 2015 16:52:01 +0100</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/categories/tecnicismos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Respuesta pública a una CA social (para Podemos)</title>
+      <link>http://txomon.com/post/2015/04/08/respuesta-publica-a-una-entidad-certificadora-social/</link>
+      <pubDate>Wed, 08 Apr 2015 16:52:01 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2015/04/08/respuesta-publica-a-una-entidad-certificadora-social/</guid>
+      <description>A cuenta de la dimisión del I+D de Podemos a cuenta del censo, Jivago ha salido con una idea sobre tener una CA social. Expongo mi razonamiento sobre porque no es posible para una organización política como Podemos y sus objetivos.
+El tema de un identificador electrónico certificado solo se consigue a través de dos maneras, con una CA oficial y centralizada o una por confianza y distribuida.
+Tenemos ambos métodos disponibles.</description>
+    </item>
+    
+    <item>
+      <title>Backport de mod_authnz_ldap de apache 2.4 a 2.2</title>
+      <link>http://txomon.com/post/2012/12/29/backport-de-mod_authnz_ldap-de-apache-2-4-a-2-2/</link>
+      <pubDate>Sat, 29 Dec 2012 18:33:25 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2012/12/29/backport-de-mod_authnz_ldap-de-apache-2-4-a-2-2/</guid>
+      <description>Lo primero decir que ha costado dios y ayuda.
+Como pro-tip, la siguiente vez que queráis compilar algo, mirad si tiene algo especial en el linkado. este modulo necesita -lldap y -llber -llber (2 veces o así lo dice apr-config &amp;ndash;with-ldap).
+Otro inconveniente que me he encontrado es que han hecho un cambio brutal en los modulos auth, básicamente porque ya distinguen entre authn y authz (authentication y authorization respectivamente). Y eso en el código se nota demasiado.</description>
+    </item>
+    
+    <item>
+      <title>How to use nvidia and nouveau in same debian/ubuntu and don&#39;t get nut</title>
+      <link>http://txomon.com/post/2012/11/29/how-to-use-nvidia-and-nouveau-in-same-debianubuntu-and-dont-get-nut/</link>
+      <pubDate>Thu, 29 Nov 2012 23:40:46 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2012/11/29/how-to-use-nvidia-and-nouveau-in-same-debianubuntu-and-dont-get-nut/</guid>
+      <description>Buenas a los que sea que me leáis,
+Estoy escribiendo esto para que le sirva como una referencia a cualquiera, lo traduciría a ingles&amp;hellip; de hecho igual lo escribo en ingles.
+I am going to explain how we can get nvidia driver and nouveau driver working in the same debian installation. I needed this because in the actual testing kernel (wheezy 3.2) my graphic card isn&amp;rsquo;t supported, and the nvidia driver has a bug when trying to start maya.</description>
+    </item>
+    
+    <item>
+      <title>cuaderno-de-bitácora</title>
+      <link>http://txomon.com/post/2012/01/11/cuaderno-de-bitacora/</link>
+      <pubDate>Wed, 11 Jan 2012 20:59:13 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2012/01/11/cuaderno-de-bitacora/</guid>
+      <description>He hecho muchas cosas hoy. Empezando ayer a las 23:50 después de llegar de casa de nerea (si tarda 10 mins ¬¬ ella sabe a que me refiero).
+Empecé a investigar sobre el algoritmo aho-corasick, que según tenía entendido, era un modelo de Luis para el algoritmo. Aunque por lo que me he enterado más tarde, solo interesa la problemática del acceso a memoria compartida que utiliza por debajo el algoritmo.</description>
+    </item>
+    
+    <item>
+      <title>Git vs SVN</title>
+      <link>http://txomon.com/post/2011/10/02/git-vs-svn/</link>
+      <pubDate>Sun, 02 Oct 2011 21:15:06 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/10/02/git-vs-svn/</guid>
+      <description>Pues como se puede apreciar en el titulo, si, esto es una comparativa. Lo primero es decir que git mola más, y lo segundo, que tengo que hacer una comparativa real de los dos para que sea un PFC xD.
+En estos momentos estoy intalando redmine. Y se antoja chungo. Sobretodo por que lo tengo que hacer en Hostgator. Además, tengo que aprender para que demonios sirve el ruby on rails y el ruby gems.</description>
+    </item>
+    
+    <item>
+      <title>Casi acabado</title>
+      <link>http://txomon.com/post/2011/09/26/casi-acabado/</link>
+      <pubDate>Mon, 26 Sep 2011 23:43:48 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/09/26/casi-acabado/</guid>
+      <description>Bueno, pues parece que ya casi he acabado el sistema de administración del control de versiones.
+Es muy muy malo, pero es una forma eficaz de poder empezar a trabajar, ya que hay otras prioridades.
+Lo que hace este script en python, es primero comprobar todos los grupos que existen en: /etc/groups y mirar cuales tienes svn en su nombre, y empiezan a partir del 9999 (el gid). Despues mira los directorios en la raiz que se halla especificado (mejor que sea en / y no por ahí suelto, por que los grupos se crean con los path completos.</description>
+    </item>
+    
+    <item>
+      <title>Empezamos</title>
+      <link>http://txomon.com/post/2011/09/24/empezamos/</link>
+      <pubDate>Sat, 24 Sep 2011 01:02:01 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/09/24/empezamos/</guid>
+      <description>Bueno, empezamos el lanzamiento del sitio web txomon.com, registrado por primera vez un 23 de Septiembre del 2011, a la 1 y pico. Y 13 horas depués, ya he tenido los aspectos técnicos cubiertos, como redirigir las peticiones DNS etc.
+He empezado moviendo la web de la banda en la que hago pruebas a una dirección interna, hasta que consiga acabarla. Instalaré un redmine, este blog, una wiki y puede que hasta un foro… lo cual por cierto lo veo poco probable, es un tostón, y ya me cuesta entrar al de lampiweb (menos mal que tengo notificaciones por mail que si no…)</description>
+    </item>
+    
+  </channel>
+</rss>

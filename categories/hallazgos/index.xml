@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hallazgos on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/categories/hallazgos/</link>
+    <description>Recent content in Hallazgos on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 29 Nov 2012 23:40:46 +0200</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/categories/hallazgos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to use nvidia and nouveau in same debian/ubuntu and don&#39;t get nut</title>
+      <link>http://txomon.com/post/2012/11/29/how-to-use-nvidia-and-nouveau-in-same-debianubuntu-and-dont-get-nut/</link>
+      <pubDate>Thu, 29 Nov 2012 23:40:46 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2012/11/29/how-to-use-nvidia-and-nouveau-in-same-debianubuntu-and-dont-get-nut/</guid>
+      <description>Buenas a los que sea que me leáis,
+Estoy escribiendo esto para que le sirva como una referencia a cualquiera, lo traduciría a ingles&amp;hellip; de hecho igual lo escribo en ingles.
+I am going to explain how we can get nvidia driver and nouveau driver working in the same debian installation. I needed this because in the actual testing kernel (wheezy 3.2) my graphic card isn&amp;rsquo;t supported, and the nvidia driver has a bug when trying to start maya.</description>
+    </item>
+    
+    <item>
+      <title>cuaderno-de-bitácora</title>
+      <link>http://txomon.com/post/2012/01/11/cuaderno-de-bitacora/</link>
+      <pubDate>Wed, 11 Jan 2012 20:59:13 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2012/01/11/cuaderno-de-bitacora/</guid>
+      <description>He hecho muchas cosas hoy. Empezando ayer a las 23:50 después de llegar de casa de nerea (si tarda 10 mins ¬¬ ella sabe a que me refiero).
+Empecé a investigar sobre el algoritmo aho-corasick, que según tenía entendido, era un modelo de Luis para el algoritmo. Aunque por lo que me he enterado más tarde, solo interesa la problemática del acceso a memoria compartida que utiliza por debajo el algoritmo.</description>
+    </item>
+    
+    <item>
+      <title>Redmine, Gitolite y su uso con SVN</title>
+      <link>http://txomon.com/post/2011/09/25/redmine-gitolite-y-su-uso-con-svn/</link>
+      <pubDate>Sun, 25 Sep 2011 01:25:37 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/09/25/redmine-gitolite-y-su-uso-con-svn/</guid>
+      <description>Me he quedado atascado en la instalación de Redmine y de Gitolite. He dejado de leer los docs de Redmine en cuanto he visto que necesitaba instalar Gitolite primero. Como la versión que tengo en mi ordenador de Gitolite tiene ya más de 1 año, me he decidido a leerme todos los docs (por cierto muy completos), y he encontrado esto:
+http://sitaramc.github.com/gitolite/doc/gitolite.rc.html#SVNSERVE
+El tag SVNSERVE no funciona, pero si buscais SVNSERVE os lleva.</description>
+    </item>
+    
+  </channel>
+</rss>

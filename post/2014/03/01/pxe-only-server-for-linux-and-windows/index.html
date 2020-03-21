@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+        <title>PXE only server for Linux and Windows</title>
+
+        <link rel="stylesheet" href="/css/stylesheet.css">
+    </head>
+    <body>
+        <section id="page-title">
+            <h1><a href="/">Txomon Blog</a></h1>
+        </section>
+
+
+
+<section class="blog-post">
+    <h1>PXE only server for Linux and Windows</h1>
+    <div class="blog-post-subheader">
+        March 1, 2014
+    </div>
+    <div class="blog-post-content">
+        <p>Windows has broken once more my computer, and I have the problem that I don&rsquo;t have any CD/DVD reader on the computer.</p>
+<p>I don&rsquo;t want either to install from USB, thought this is the way I have done before,a so I have decided that I will try to get once more over the PXE setups.</p>
+<p>I must say I am doing it now, so expect this to need fixups!</p>
+<h2 id="state-of-art-and-ideas">State of art and ideas</h2>
+<p>I want to install windows from the network, so I have decided to do it with PXE and a Linux server (don&rsquo;t have any windows available, nor want it). The machine that will hold the setup will be a RPi, so the server software must be the littlest possible.</p>
+<p>On my experience on Fon, I have learnt that dnsmasq is quite powerful, without the need of configuring dhcpd (which I have already used before), and much more light, so I first searched for pxe only with dnsmasq, and found a mail[1] of the dnsmasq user list.</p>
+<p>Also, I wanted to have windows booted, so I searched and found superuser answer with the steps[2]. I don&rsquo;t want (or I will try not to at least) to create a samba share to put windows files, and will try to do it by tftp or ftp if possible. I also found a resource that will be useful for setting up tftp&rsquo;s pxe files correctly.</p>
+<h2 id="analyzing-dhcp-requests">Analyzing dhcp requests</h2>
+<p>I first wanted to be sure that I couldn&rsquo;t do what I expected with the dhcp protocol, so I run wireshark, and made a mini-fixup with wireshark for allowing my normal user capture packets. At the end, after reading that horrible readme, I noticed the command I had to run[3]:</p>
+<pre><code>I./b. Installing dumpcap and allowing non-root users to capture packets
+
+   Members of the wireshark group will be able to capture packets on network
+   interfaces. This is the preferred way of installation if Wireshark/Tshark
+   will be used for capturing and displaying packets at the same time, since
+   that way only the dumpcap process has to be run with elevated privileges
+   thanks to the privilege separation[1].
+
+   Note that no user will be added to group wireshark automatically, the
+   system administrator has to add them manually.
+
+   The additional privileges are provided using the Linux Capabilities
+   system where it is available and resort to setting the set-user-id bit
+   of the dumpcap binary as a fall-back, where the Linux Capabilities system
+   is not present (Debian GNU/kFreeBSD, Debian GNU/Hurd).
+
+   Linux kernels provided by Debian support Linux Capabilities, but custom
+   built kernels may lack this support. If the support for Linux
+   Capabilities is not present at the time of installing wireshark-common
+   package, the installer will fall back to set the set-user-id bit to
+   allow non-root users to capture packets.
+
+   If installation succeeds with using Linux Capabilities, non-root users
+   will not be able to capture packets while running kernels not supporting
+   Linux Capabilities.
+
+   Note that capturing USB packets is not enabled for non-root users by using
+   Linux Capabilities. You have to capture the packets using the method
+   described in I./a., setting the set-user-id permanently using
+   dpkg-statoverride or running Wireshark as root.
+
+The installation method can be changed any time by running:
+dpkg-reconfigure wireshark-common
+</code></pre><p>Do you see it? yeah, at the end, you just have to do the following:</p>
+<pre><code>sudo dpkg-reconfigure wireshark-common
+sudo adduser &lt;user&gt; wireshark
+</code></pre><p>Now we must relogin (if not, user group changes wont apply), and we can analyze DHCP requests. I must say I have put the Realtek PXE lan boot that my BIOS offers. I will do the same analisys with the Legacy Boot later.</p>
+<figure>
+    <img src="dhcp-discover-attributes.png" width="100%"/> <figcaption>
+            <h4>DHCP Discover Attributes</h4>
+        </figcaption>
+</figure>
+
+<p>We will analyze the packet and find somethins like the following:</p>
+<figure>
+    <img src="dhcp-discover-request.png" width="100%"/> <figcaption>
+            <h4>DHCP Discover Request</h4>
+        </figcaption>
+</figure>
+
+<p>There you can see how there are tons of requests for PXE, which is the one we want to answer to, avoiding the ones like the following:</p>
+<figure>
+    <img src="dhcp-discover-request-bytes.png" width="100%"/> <figcaption>
+            <h4>DHCP Discover Request Bytes</h4>
+        </figcaption>
+</figure>
+
+<p>And now, I want to analyze the Legacy Network Boot that my BIOS offers:</p>
+<figure>
+    <img src="dhcp-discover-request-pxe-list.png" width="100%"/> <figcaption>
+            <h4>DHCP Discover Request PXE List</h4>
+        </figcaption>
+</figure>
+
+<p>UOoo it seems like this is not much &ldquo;Legacy Boot Lan&rdquo;! Anyway, it seems enough for dhcp booting.</p>
+<h2 id="install-pxe-service-dnsmasq-with-proxy-only-config">Install PXE service (dnsmasq with proxy only config)</h2>
+<p>So that was it. Now I could install dnsmasq with:</p>
+<blockquote>
+<p>sudo apt-get install dnsmasq</p>
+</blockquote>
+<p>And configure it as stated in the email thread:</p>
+<blockquote>
+<p>pxe-service=x86PC,&ldquo;PXE Netboot&rdquo;,pxe/pxelinux
+dhcp-range=192.168.1.0,proxy
+tftp-root=/var/tftp
+enable-tftp</p>
+</blockquote>
+<p>Restart dnsmasq with:</p>
+<blockquote>
+<p>sudo service dnsmasq restart</p>
+</blockquote>
+<p>An we are ready to setup the tftp files.</p>
+<h2 id="tftp-setup-for-debian">TFTP Setup for debian</h2>
+<p>So we have to put in /var/tftp all the stuff we want to get by there. I have been wondering for a pair of hours why didn&rsquo;t boot from the pxelinux, and just realized that I had missing enable-tftp line in the config file.</p>
+<p>[1]: Dnsmasq discuss about pxe only server: <a href="http://lists.thekelleys.org.uk/pipermail/dnsmasq-discuss/2010q1/003857.html">http://lists.thekelleys.org.uk/pipermail/dnsmasq-discuss/2010q1/003857.html</a></p>
+<p>[2]: Superuser windows PXE: <a href="http://superuser.com/questions/42263/how-to-install-windows-7-from-the-network">http://superuser.com/questions/42263/how-to-install-windows-7-from-the-network</a></p>
+<p>[3]: Windows PXE tftp: [http://www.howtogeek.com/162070/it-geek-how-to-network-boot-pxe-the-winpe-recovery-disk-with-pxelinux-v5-wimboot/</p>
+<p>[4]: (<a href="http://www.howtogeek.com/162070/it-geek-how-to-network-boot-pxe-the-winpe-recovery-disk-with-pxelinux-v5-wimboot/">http://www.howtogeek.com/162070/it-geek-how-to-network-boot-pxe-the-winpe-recovery-disk-with-pxelinux-v5-wimboot/</a>) Debian readme for wireshark: <a href="">file:///usr/share/doc/wireshark-common/README.Debian</a> or <a href="http://anonscm.debian.org/viewvc/collab-maint/ext-maint/wireshark/trunk/debian/README.Debian?view=markup">http://anonscm.debian.org/viewvc/collab-maint/ext-maint/wireshark/trunk/debian/README.Debian?view=markup</a></p>
+
+    </div>
+</section>
+
+    </body>
+</html>

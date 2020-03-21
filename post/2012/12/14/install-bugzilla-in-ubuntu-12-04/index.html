@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+        <title>Install bugzilla in ubuntu 12.04</title>
+
+        <link rel="stylesheet" href="/css/stylesheet.css">
+    </head>
+    <body>
+        <section id="page-title">
+            <h1><a href="/">Txomon Blog</a></h1>
+        </section>
+
+
+
+<section class="blog-post">
+    <h1>Install bugzilla in ubuntu 12.04</h1>
+    <div class="blog-post-subheader">
+        December 14, 2012
+    </div>
+    <div class="blog-post-content">
+        <h3 id="introduction">Introduction</h3>
+<p>Now will document the process to install bugzilla.</p>
+<p>I will follow several docs, which I wont put here because I am lazy atm.</p>
+<p>First of all, we create our folder, named consultas (I am spanish as many know and I dont want to be all the time doing transcriptions/translations).</p>
+<pre><code>mkdir -p proyectos/consultas
+cd proyectos/consultas
+</code></pre><h3 id="mariadb-system-configuration-and-apache2-install">MariaDB system configuration and apache2 install</h3>
+<p>Then we start to configure the system to install mariadb (I don&rsquo;t like anymore mysql), we go here <a href="https://downloads.mariadb.org/mariadb/repositories/">https://downloads.mariadb.org/mariadb/repositories/</a> and we just copy what they output for us.</p>
+<pre><code># MariaDB 5.5 repository list - created 2012-12-13 18:13 UTC
+# http://downloads.mariadb.org/mariadb/repositories/
+deb http://mirror2.hs-esslingen.de/mariadb/repo/5.5/ubuntu precise main
+deb-src http://mirror2.hs-esslingen.de/mariadb/repo/5.5/ubuntu precise main
+</code></pre><p>And we put it in a new file in /etc/apt/sources.list/mariadb.list</p>
+<p>Now we run a command to add the key as we are told in (<a href="https://kb.askmonty.org/en/installing-mariadb-deb-files/">https://kb.askmonty.org/en/installing-mariadb-deb-files/</a>):</p>
+<pre><code>sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+</code></pre><p>And now we are prepared to install mariadb:</p>
+<pre><code>sudo apt-get update &amp;&amp; sudo apt-get install mariadb-server apache2 -y
+#We enter here the root password...
+</code></pre><h3 id="installing-bugzilla">Installing bugzilla</h3>
+<p>I didn&rsquo;t have very clear in which order must be done, but as I like seeing my results, I will make the installation before.</p>
+<p>So, we download bugzilla, untar it, and modify to fix it to be able to connect to gmail:</p>
+<pre><code>wget http://ftp.mozilla.org/pub/mozilla.org/webtools/bugzilla-4.2.4.tar.gz
+tar xf bugzilla-4.2.4.tar.gz
+cd bugzilla-4.2.4
+vim Bugzilla/Mailer.pm #Edit line 166 to be: if($method eq &quot;SMTP&quot; || $method eq &quot;Gmail&quot;){
+</code></pre><p>And now, we have to check about the perl modules, etc.</p>
+<pre><code>./checksetup.pl --check-modules
+sudo cpan CPAN YAML Email::Send::Gmail
+sudo apt-get install libgd2-xpm-dev libapache2-mod-perl-dev libapache2-mod-auth-mysql patchutils# this is for GD, mod_perl and mysql. patchutils is for later use in configuring bugzilla
+sudo a2enmod headers expires # mod_headers and mod_expires dependencies have to be enabled
+sudo perl install-modules.pl --all #I don't care of this, just want bugzilla get installed!
+</code></pre><p>In theory, you should have everything installed. Sample output here:</p>
+<pre><code>./checksetup.pl --check-modules
+* This is Bugzilla 4.2.4 on perl 5.14.2
+* Running on Linux 3.2.0-34-generic #53-Ubuntu SMP Thu Nov 15 10:48:16 UTC 2012
+
+Checking perl modules...
+Checking for CGI.pm (v3.51) ok: found v3.62
+Checking for Digest-SHA (any) ok: found v5.61
+Checking for TimeDate (v2.21) ok: found v2.24
+Checking for DateTime (v0.28) ok: found v0.78
+Checking for DateTime-TimeZone (v0.71) ok: found v1.56
+Checking for DBI (v1.614) ok: found v1.622
+Checking for Template-Toolkit (v2.22) ok: found v2.24
+Checking for Email-Send (v2.00) ok: found v2.198
+Checking for Email-MIME (v1.904) ok: found v1.911
+Checking for URI (v1.37) ok: found v1.59
+Checking for List-MoreUtils (v0.22) ok: found v0.33
+Checking for Math-Random-ISAAC (v1.0.1) ok: found v1.004
+
+Checking available perl DBD modules...
+Checking for DBD-Pg (v1.45) not found
+Checking for DBD-mysql (v4.001) ok: found v4.020
+Checking for DBD-SQLite (v1.29) ok: found v1.37
+Checking for DBD-Oracle (v1.19) not found
+
+The following Perl modules are optional:
+Checking for GD (v1.20) ok: found v2.46
+Checking for Chart (v2.1) ok: found v2.4.6
+Checking for Template-GD (any) ok: found v1.56
+Checking for GDTextUtil (any) ok: found v0.86
+Checking for GDGraph (any) ok: found v1.44
+Checking for MIME-tools (v5.406) ok: found v5.503
+Checking for libwww-perl (any) ok: found v6.03
+Checking for XML-Twig (any) ok: found v3.42
+Checking for PatchReader (v0.9.6) ok: found v0.9.6
+Checking for perl-ldap (any) ok: found v0.51
+Checking for Authen-SASL (any) ok: found v2.16
+Checking for RadiusPerl (any) ok: found v0.22
+Checking for SOAP-Lite (v0.712) ok: found v0.715
+Checking for JSON-RPC (any) ok: found v1.03
+Checking for JSON-XS (v2.0) ok: found v2.33
+Checking for Test-Taint (any) ok: found v1.06
+Checking for HTML-Parser (v3.67) ok: found v3.69
+Checking for HTML-Scrubber (any) ok: found v0.09
+Checking for Encode (v2.21) ok: found v2.42_01
+Checking for Encode-Detect (any) ok: found v1.01
+Checking for Email-MIME-Attachment-Stripper (any) ok: found v1.316
+Checking for Email-Reply (any) ok: found v1.202
+Checking for TheSchwartz (any) ok: found v1.10
+Checking for Daemon-Generic (any) ok: found v0.82
+Checking for mod_perl (v1.999022) ok: found v2.000005
+Checking for Apache-SizeLimit (v0.96) ok: found v0.96
+Checking for mod_headers (any) ok
+Checking for mod_expires (any) ok
+Checking for mod_env (any) ok
+</code></pre><p>So, with all this in OK state, we now continue to configure mariadb and apache.</p>
+<h3 id="configure-apache-for-use-of-ssl-always">Configure apache for use of ssl always</h3>
+<p>Now, I want to have everything under ssl. The first thing is to create all the redirects from 80 to 443, and set up virtualhosts, etc. For that, I create a file named delegación in /etc/apache2/sites-available with this content:</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+ServerName u102508.ehu.es
+Redirect permanent / https://u102508.ehu.es/
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:443&gt;
+ServerName u102508.ehu.es
+# Normal config here
+DocumentRoot /var/www/
+
+# SSL configuration here
+SSLEngine On
+SSLCertificateFile /etc/apache2/private/delegacion.crt
+SSLCertificateKeyFile /etc/apache2/private/delegacion.key
+
+&lt;/VirtualHost&gt;
+</code></pre><p>Create the certificate, move it to a private folder, I also disable default site, add a ServerName directive to the ports.conf file, and disable the NameVirtualHost *:80 in there also.</p>
+<pre><code>openssl req -x509 -nodes -days 10000 -newkey rsa:8192 -keyout delegacion.key -out delegacion.crt
+sudo mkdir -p /etc/apache2/private
+sudo mv delegacion* /etc/apache2/private
+sudo chown -R www-data:www-data /etc/apache2/private
+sudo chmod 500 -R /etc/apache2/private
+sudo a2enmod ssl
+sudo a2ensite delegacion
+sudo a2dissite default
+sudo apachectl restart
+</code></pre><p>And now in theory everything should work correctly. Now we will add bugzilla&rsquo;s dir etc. to the apache conf, and also move the dir to where we will work:</p>
+<pre><code>sudo mkdir -p /smb/web # Here we host the files
+cd ..
+sudo mv bugzilla-4.2.4 /smb/web/tracker
+sudo chown -R administrador:www-data /smb/web #administrador is root user
+</code></pre><p>Also we modify /etc/apache/sites-available/delegacion to add the directory entry&hellip;</p>
+<pre><code>Alias /tracker &quot;/smb/web/tracker/&quot;
+&lt;Directory /smb/web/tracker/&gt;
+    AddHandler cgi-script .cgi
+    Options +Indexes +ExecCGI +FollowSymLinks
+    Allow from all
+    DirectoryIndex index.cgi
+    AllowOverride Limit FileInfo Indexes
+&lt;/Directory&gt;
+</code></pre><p>And it is in theory complete. Now we have to configure the mariadb user/password and modify /smb/web/tracker/localconfig</p>
+<h3 id="mariadb-user-creation">MariaDB user creation</h3>
+<p>Now, we create the user bugs, and give him access:</p>
+<pre><code>mysql -uroot -e &quot;GRANT ALL ON bugs.* TO 'bugs'@'localhost' IDENTIFIED BY 'aspdofihapson1234o8y2e3';&quot; -p
+</code></pre><p>just enter root password and work done. Remember password (&lsquo;aspdofihapson1234o&hellip;') because that is what we have to put in the localconfig file.</p>
+<p>So now edit localconfig, you will just need to change:</p>
+<ul>
+<li>$webservergroup=&quot;www-data&rdquo;</li>
+<li>$db_pass (to the pass we used)</li>
+<li>$db_sock = &ldquo;/var/run/mysqld/mysqld.sock&rdquo;</li>
+<li>$interdiffbin=&rdquo;/usr/bin/interdiff&rdquo;</li>
+</ul>
+<p>and now run sudo ./checksetup.pl, and ingress al what you need.</p>
+<p>And now, we are in theory done with the shell.</p>
+<h3 id="configure-bugzilla-and-gmail">Configure Bugzilla and Gmail</h3>
+<p>Now we enter in the web page (for me u102508.ehu.es) and go straigth to configure email:</p>
+<ol>
+<li>mailfrom: gmail address <code>&lt;whatever&gt;@gmail.com</code></li>
+<li>smtpserver: smtp.gmail.com</li>
+<li>smtp_username: gmail address</li>
+<li>smtp_password: gmail password</li>
+</ol>
+<p>And click on save. Now go straight to LDAP:</p>
+<ol>
+<li>LDAPserver: ldaps://ldaps.lg.ehu.es/ in my case</li>
+<li>LDAPstarttls: off (for me)</li>
+<li>LDAPBaseDN: ou=people,dc=ehu,dc=es</li>
+<li>Didnt touch LDAPuidattribute nor LDAPmailattribute</li>
+<li>LDAPFilter: in my case, I just want the ones in my faculty =&gt; (SambaDomainName=345)</li>
+</ol>
+<p>And click on save. Now go to user authentication:</p>
+<ol>
+<li>user_verify_class: put LDAP the first (just move ldap with the up arrow, leave the other like they are)</li>
+<li>createemailregexp: set to blank ( =&gt;  ) ((XD))</li>
+</ol>
+<p>And its all done. Now you may have profit modifying all bugzilla to fix your needs</p>
+
+    </div>
+</section>
+
+    </body>
+</html>

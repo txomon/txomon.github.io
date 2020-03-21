@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+        <title>From Jekyll to Hugo</title>
+
+        <link rel="stylesheet" href="/css/stylesheet.css">
+    </head>
+    <body>
+        <section id="page-title">
+            <h1><a href="/">Txomon Blog</a></h1>
+        </section>
+
+
+
+<section class="blog-post">
+    <h1>From Jekyll to Hugo</h1>
+    <div class="blog-post-subheader">
+        March 21, 2020
+    </div>
+    <div class="blog-post-content">
+        <p>I&rsquo;m taking this time to clean up the stuff I have, and I have decided to put in a bit better shape my blog.</p>
+<p>I&rsquo;m quite a bit tired of jekyll, the part of using ruby never convinced me, and documentation sucked, so I decided to move to Hugo.</p>
+<p>Just in case you are wondering why documentation sucked, it&rsquo;s because content is all mixed, pro tip:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/t4vKPhjcMZg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Anyway, the process has been kind-a terrible, because hugo&rsquo;s docs are,&hellip; well, they hold more information but they are also completely mixed, getting started has a full reference of the documentation, it doesn&rsquo;t hold you by the hand on how to build a site&hellip; There are tons of things that I have been looking at examples just to be able to pinpoint them.</p>
+<p>Few things that I need to remember for the future:</p>
+<ul>
+<li>
+<p>New posts can be created with for example: <code>hugo new post/2020/03/21/from-jekyll-to-hugo.md</code></p>
+</li>
+<li>
+<p>When creating posts with images, because output will be a folder, they need to already be a folder by themselves: <code>hugo new post/2020/03/21/from-jekyll-to-hugo/index.md</code> for this one for example</p>
+</li>
+<li>
+<p>Not all themes support everything. Hugo seems like it has been extended in several ways through themes that do crazy stuff</p>
+</li>
+</ul>
+<p>Now I am trying to create a pre-commit hook to update the website whenever needed</p>
+
+    </div>
+</section>
+
+    </body>
+</html>

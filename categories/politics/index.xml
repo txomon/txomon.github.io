@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Politics on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/categories/politics/</link>
+    <description>Recent content in Politics on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Apr 2015 16:52:01 +0100</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/categories/politics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Respuesta pública a una CA social (para Podemos)</title>
+      <link>http://txomon.com/post/2015/04/08/respuesta-publica-a-una-entidad-certificadora-social/</link>
+      <pubDate>Wed, 08 Apr 2015 16:52:01 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2015/04/08/respuesta-publica-a-una-entidad-certificadora-social/</guid>
+      <description>A cuenta de la dimisión del I+D de Podemos a cuenta del censo, Jivago ha salido con una idea sobre tener una CA social. Expongo mi razonamiento sobre porque no es posible para una organización política como Podemos y sus objetivos.
+El tema de un identificador electrónico certificado solo se consigue a través de dos maneras, con una CA oficial y centralizada o una por confianza y distribuida.
+Tenemos ambos métodos disponibles.</description>
+    </item>
+    
+  </channel>
+</rss>

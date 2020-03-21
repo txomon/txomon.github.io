@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automatización on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/categories/automatizaci%C3%B3n/</link>
+    <description>Recent content in Automatización on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Jan 2012 20:59:13 +0100</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/categories/automatizaci%C3%B3n/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>cuaderno-de-bitácora</title>
+      <link>http://txomon.com/post/2012/01/11/cuaderno-de-bitacora/</link>
+      <pubDate>Wed, 11 Jan 2012 20:59:13 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2012/01/11/cuaderno-de-bitacora/</guid>
+      <description>He hecho muchas cosas hoy. Empezando ayer a las 23:50 después de llegar de casa de nerea (si tarda 10 mins ¬¬ ella sabe a que me refiero).
+Empecé a investigar sobre el algoritmo aho-corasick, que según tenía entendido, era un modelo de Luis para el algoritmo. Aunque por lo que me he enterado más tarde, solo interesa la problemática del acceso a memoria compartida que utiliza por debajo el algoritmo.</description>
+    </item>
+    
+  </channel>
+</rss>

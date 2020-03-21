@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interface on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/tags/interface/</link>
+    <description>Recent content in interface on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Oct 2011 13:10:44 +0200</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/tags/interface/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vfront</title>
+      <link>http://txomon.com/post/2011/10/25/vfront/</link>
+      <pubDate>Tue, 25 Oct 2011 13:10:44 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/10/25/vfront/</guid>
+      <description>Bueno, ahora estoy intentando encontrar algún tipo de interfaz para una base de datos. La idea es que sea facil de configurar. Habia empezado a hacer la interfaz en PHP y tenia intencion de hacer o integrarla de alguna manera con AJAX, JQuery, o tecnologias similares que me permitan hacerlo un poco más manejable para que no esté actualizando la página todo el rato.
+No se me ocurre una forma facil de hacerlo.</description>
+    </item>
+    
+  </channel>
+</rss>

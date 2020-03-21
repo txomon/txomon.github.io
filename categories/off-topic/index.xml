@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Off-topic on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/categories/off-topic/</link>
+    <description>Recent content in Off-topic on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Mar 2014 17:07:23 +0100</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/categories/off-topic/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PXE only server for Linux and Windows</title>
+      <link>http://txomon.com/post/2014/03/01/pxe-only-server-for-linux-and-windows/</link>
+      <pubDate>Sat, 01 Mar 2014 17:07:23 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2014/03/01/pxe-only-server-for-linux-and-windows/</guid>
+      <description>Windows has broken once more my computer, and I have the problem that I don&amp;rsquo;t have any CD/DVD reader on the computer.
+I don&amp;rsquo;t want either to install from USB, thought this is the way I have done before,a so I have decided that I will try to get once more over the PXE setups.
+I must say I am doing it now, so expect this to need fixups!
+State of art and ideas I want to install windows from the network, so I have decided to do it with PXE and a Linux server (don&amp;rsquo;t have any windows available, nor want it).</description>
+    </item>
+    
+    <item>
+      <title>Trac for an student council</title>
+      <link>http://txomon.com/post/2013/01/28/trac-for-an-student-conseil/</link>
+      <pubDate>Mon, 28 Jan 2013 09:02:43 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2013/01/28/trac-for-an-student-conseil/</guid>
+      <description>As you maybe know, I am part of the student&amp;rsquo;s council of my faculty. Due to that, I have many times be thinking on upgrading the UE (User Experience) of the people that comes to us.
+Nowadays, they come to our local at the ETSIB and ask their questions, if in that moment there isn&amp;rsquo;t the person assigned to their problem, we write their question in a question notebook, and the person will answer them with the provided data.</description>
+    </item>
+    
+    <item>
+      <title>Install bugzilla in ubuntu 12.04</title>
+      <link>http://txomon.com/post/2012/12/14/install-bugzilla-in-ubuntu-12-04/</link>
+      <pubDate>Fri, 14 Dec 2012 02:16:18 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2012/12/14/install-bugzilla-in-ubuntu-12-04/</guid>
+      <description>Introduction Now will document the process to install bugzilla.
+I will follow several docs, which I wont put here because I am lazy atm.
+First of all, we create our folder, named consultas (I am spanish as many know and I dont want to be all the time doing transcriptions/translations).
+mkdir -p proyectos/consultas cd proyectos/consultas MariaDB system configuration and apache2 install Then we start to configure the system to install mariadb (I don&amp;rsquo;t like anymore mysql), we go here https://downloads.</description>
+    </item>
+    
+    <item>
+      <title>Reverse engineering the authentication of your University</title>
+      <link>http://txomon.com/post/2012/12/13/reverse-engineering-the-authentication-of-your-university/</link>
+      <pubDate>Thu, 13 Dec 2012 17:40:12 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2012/12/13/reverse-engineering-the-authentication-of-your-university/</guid>
+      <description>Well, In order to use ldap in my university, I have to learn how ldap works.
+I first read LDAP intro, http://www.davidpashley.com/articles/ldap-basics.html
+And then, went to http://www.openldap.org/doc/admin23/
+There, in the quick start guide, I could get this command:
+ldapsearch -h adm.uni.com -x -b &#39;&#39; -s base &#39;(objectclass=*)&#39; namingContexts I got the output:
+# extended LDIF # # LDAPv3 # base &amp;lt;&amp;gt; with scope baseObject # filter: (objectclass=*) # requesting: namingContexts # # dn: namingContexts: DC=adm,DC=uni,DC=com namingContexts: CN=Configuration,DC=adm,DC=uni,DC=com namingContexts: CN=Schema,CN=Configuration,DC=adm,DC=uni,DC=com # search result search: 2 result: 0 Success # numResponses: 2 # numEntries: 1 So now, I continue reading&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Como crear tu propia CA</title>
+      <link>http://txomon.com/post/2012/05/26/como-crear-tu-propia-ca/</link>
+      <pubDate>Sat, 26 May 2012 21:05:44 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2012/05/26/como-crear-tu-propia-ca/</guid>
+      <description>Bueno, pues me he decidido a escribir este artículo por una razón. Que la gente no se vuelva loca buscando por internet como yo he hecho. No voy a discutir las ventajas de pasarse al SSL, y voy a ir al grano.
+En primer lugar, necesitamos tener instalada la librería y los comandos de openssl. Después, ya solo tienes que elegir el sitio en el que quieres poner tu AC (autoridad de certificación, CA en adelante).</description>
+    </item>
+    
+    <item>
+      <title>Vfront</title>
+      <link>http://txomon.com/post/2011/10/25/vfront/</link>
+      <pubDate>Tue, 25 Oct 2011 13:10:44 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/10/25/vfront/</guid>
+      <description>Bueno, ahora estoy intentando encontrar algún tipo de interfaz para una base de datos. La idea es que sea facil de configurar. Habia empezado a hacer la interfaz en PHP y tenia intencion de hacer o integrarla de alguna manera con AJAX, JQuery, o tecnologias similares que me permitan hacerlo un poco más manejable para que no esté actualizando la página todo el rato.
+No se me ocurre una forma facil de hacerlo.</description>
+    </item>
+    
+    <item>
+      <title>MariaDB</title>
+      <link>http://txomon.com/post/2011/10/13/mariadb/</link>
+      <pubDate>Thu, 13 Oct 2011 12:19:40 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/10/13/mariadb/</guid>
+      <description>Bueno, al final he migrado a mariadb&amp;hellip; Y se me ha petado todo, ya que mysql esta en la 5.5.3 y mariadb en la 5.3.
+No tenía nada muy importante gracias a dios, y no se si me molestaré en poner todo otra vez como antes, ya que de todos modos, estoy utilizando de test, y el resto de cosas las tengo en el server oficial (txomon.com).
+Ahora marcho para clase a otra clase de bases de datos que está genial.</description>
+    </item>
+    
+    <item>
+      <title>Hablando del PFC</title>
+      <link>http://txomon.com/post/2011/09/27/hablando-del-pfc/</link>
+      <pubDate>Tue, 27 Sep 2011 12:55:02 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/09/27/hablando-del-pfc/</guid>
+      <description>Bueno, pues he hablado con Armando, y me ha dicho que es posible que se pueda hacer un PFC con todo lo de la gestión documental, etc. No tengo del todo claro como, pero creo conseguiré algo relacionado con el kernel o si no, gestión documental, que es lo que me mola.
+Desde luego, voy a utilizar git, aunque sea en un mal arreglo con el git svn&amp;hellip; pero por lo menos, sabré utilizarlo.</description>
+    </item>
+    
+    <item>
+      <title>Casi acabado</title>
+      <link>http://txomon.com/post/2011/09/26/casi-acabado/</link>
+      <pubDate>Mon, 26 Sep 2011 23:43:48 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/09/26/casi-acabado/</guid>
+      <description>Bueno, pues parece que ya casi he acabado el sistema de administración del control de versiones.
+Es muy muy malo, pero es una forma eficaz de poder empezar a trabajar, ya que hay otras prioridades.
+Lo que hace este script en python, es primero comprobar todos los grupos que existen en: /etc/groups y mirar cuales tienes svn en su nombre, y empiezan a partir del 9999 (el gid). Despues mira los directorios en la raiz que se halla especificado (mejor que sea en / y no por ahí suelto, por que los grupos se crean con los path completos.</description>
+    </item>
+    
+  </channel>
+</rss>

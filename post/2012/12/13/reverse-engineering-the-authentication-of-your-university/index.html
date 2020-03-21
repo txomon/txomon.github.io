@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+        <title>Reverse engineering the authentication of your University</title>
+
+        <link rel="stylesheet" href="/css/stylesheet.css">
+    </head>
+    <body>
+        <section id="page-title">
+            <h1><a href="/">Txomon Blog</a></h1>
+        </section>
+
+
+
+<section class="blog-post">
+    <h1>Reverse engineering the authentication of your University</h1>
+    <div class="blog-post-subheader">
+        December 13, 2012
+    </div>
+    <div class="blog-post-content">
+        <p>Well, In order to use ldap in my university, I have to learn how ldap works.</p>
+<p>I first read LDAP intro, <a href="http://www.davidpashley.com/articles/ldap-basics.html">http://www.davidpashley.com/articles/ldap-basics.html</a></p>
+<p>And then, went to <a href="http://www.openldap.org/doc/admin23/">http://www.openldap.org/doc/admin23/</a></p>
+<p>There, in the quick start guide, I could get this command:</p>
+<pre><code>ldapsearch -h adm.uni.com -x -b '' -s base '(objectclass=*)' namingContexts
+</code></pre><p>I got the output:</p>
+<pre><code># extended LDIF
+#
+# LDAPv3
+# base &lt;&gt; with scope baseObject
+# filter: (objectclass=*)
+# requesting: namingContexts
+#
+#
+dn:
+namingContexts: DC=adm,DC=uni,DC=com
+namingContexts: CN=Configuration,DC=adm,DC=uni,DC=com
+namingContexts: CN=Schema,CN=Configuration,DC=adm,DC=uni,DC=com
+# search result
+search: 2
+result: 0 Success
+# numResponses: 2
+# numEntries: 1
+</code></pre><p>So now, I continue reading&hellip;</p>
+<p>Well, at the end, I found that I had to ask for <code>uid=&lt;username&gt;,ou=people,dc=uni,dc=com</code> to the server <code>ldaps.lg.uni.com</code></p>
+<p>There I can check a user exists, but I can&rsquo;t auth him yet&hellip;</p>
+<p>Ok, I found the way. With this line I can query for the user&rsquo;s info</p>
+<pre><code>ldapsearch -x -H ldaps://ldaps.lg.uni.com/ -b ou=people,dc=uni,dc=com uid=jdomingo002
+</code></pre><p>If I add this args:</p>
+<pre><code>-D uid=jdomingo002,ou=people,dc=uni,dc=com -W
+</code></pre><p>I would try to identify as jdomingo002. (prompting for password)</p>
+
+    </div>
+</section>
+
+    </body>
+</html>

@@ -4,3 +4,4 @@ title: Javier Domingo Cansino (txomon)
 params:
   sitename: Txomon Blog
 theme: elephants
+publishDir: .

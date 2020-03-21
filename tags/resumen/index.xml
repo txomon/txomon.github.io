@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>resumen on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/tags/resumen/</link>
+    <description>Recent content in resumen on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Sep 2011 23:43:48 +0200</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/tags/resumen/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Casi acabado</title>
+      <link>http://txomon.com/post/2011/09/26/casi-acabado/</link>
+      <pubDate>Mon, 26 Sep 2011 23:43:48 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/09/26/casi-acabado/</guid>
+      <description>Bueno, pues parece que ya casi he acabado el sistema de administración del control de versiones.
+Es muy muy malo, pero es una forma eficaz de poder empezar a trabajar, ya que hay otras prioridades.
+Lo que hace este script en python, es primero comprobar todos los grupos que existen en: /etc/groups y mirar cuales tienes svn en su nombre, y empiezan a partir del 9999 (el gid). Despues mira los directorios en la raiz que se halla especificado (mejor que sea en / y no por ahí suelto, por que los grupos se crean con los path completos.</description>
+    </item>
+    
+    <item>
+      <title>Empezamos</title>
+      <link>http://txomon.com/post/2011/09/24/empezamos/</link>
+      <pubDate>Sat, 24 Sep 2011 01:02:01 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/09/24/empezamos/</guid>
+      <description>Bueno, empezamos el lanzamiento del sitio web txomon.com, registrado por primera vez un 23 de Septiembre del 2011, a la 1 y pico. Y 13 horas depués, ya he tenido los aspectos técnicos cubiertos, como redirigir las peticiones DNS etc.
+He empezado moviendo la web de la banda en la que hago pruebas a una dirección interna, hasta que consiga acabarla. Instalaré un redmine, este blog, una wiki y puede que hasta un foro… lo cual por cierto lo veo poco probable, es un tostón, y ya me cuesta entrar al de lampiweb (menos mal que tengo notificaciones por mail que si no…)</description>
+    </item>
+    
+  </channel>
+</rss>

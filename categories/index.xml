@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/categories/</link>
+    <description>Recent content in Categories on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Apr 2015 16:52:01 +0100</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Politics</title>
+      <link>http://txomon.com/categories/politics/</link>
+      <pubDate>Wed, 08 Apr 2015 16:52:01 +0100</pubDate>
+      
+      <guid>http://txomon.com/categories/politics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tecnicismos</title>
+      <link>http://txomon.com/categories/tecnicismos/</link>
+      <pubDate>Wed, 08 Apr 2015 16:52:01 +0100</pubDate>
+      
+      <guid>http://txomon.com/categories/tecnicismos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Off-topic</title>
+      <link>http://txomon.com/categories/off-topic/</link>
+      <pubDate>Sat, 01 Mar 2014 17:07:23 +0100</pubDate>
+      
+      <guid>http://txomon.com/categories/off-topic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programación</title>
+      <link>http://txomon.com/categories/programaci%C3%B3n/</link>
+      <pubDate>Sat, 29 Dec 2012 18:33:25 +0100</pubDate>
+      
+      <guid>http://txomon.com/categories/programaci%C3%B3n/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cuaderno de bitácora</title>
+      <link>http://txomon.com/categories/cuaderno-de-bit%C3%A1cora/</link>
+      <pubDate>Thu, 29 Nov 2012 23:40:46 +0200</pubDate>
+      
+      <guid>http://txomon.com/categories/cuaderno-de-bit%C3%A1cora/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hallazgos</title>
+      <link>http://txomon.com/categories/hallazgos/</link>
+      <pubDate>Thu, 29 Nov 2012 23:40:46 +0200</pubDate>
+      
+      <guid>http://txomon.com/categories/hallazgos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Automatización</title>
+      <link>http://txomon.com/categories/automatizaci%C3%B3n/</link>
+      <pubDate>Wed, 11 Jan 2012 20:59:13 +0100</pubDate>
+      
+      <guid>http://txomon.com/categories/automatizaci%C3%B3n/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

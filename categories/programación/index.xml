@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programación on Javier Domingo Cansino (txomon)</title>
+    <link>http://txomon.com/categories/programaci%C3%B3n/</link>
+    <description>Recent content in Programación on Javier Domingo Cansino (txomon)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 29 Dec 2012 18:33:25 +0100</lastBuildDate>
+    
+	<atom:link href="http://txomon.com/categories/programaci%C3%B3n/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Backport de mod_authnz_ldap de apache 2.4 a 2.2</title>
+      <link>http://txomon.com/post/2012/12/29/backport-de-mod_authnz_ldap-de-apache-2-4-a-2-2/</link>
+      <pubDate>Sat, 29 Dec 2012 18:33:25 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2012/12/29/backport-de-mod_authnz_ldap-de-apache-2-4-a-2-2/</guid>
+      <description>Lo primero decir que ha costado dios y ayuda.
+Como pro-tip, la siguiente vez que queráis compilar algo, mirad si tiene algo especial en el linkado. este modulo necesita -lldap y -llber -llber (2 veces o así lo dice apr-config &amp;ndash;with-ldap).
+Otro inconveniente que me he encontrado es que han hecho un cambio brutal en los modulos auth, básicamente porque ya distinguen entre authn y authz (authentication y authorization respectivamente). Y eso en el código se nota demasiado.</description>
+    </item>
+    
+    <item>
+      <title>cuaderno-de-bitácora</title>
+      <link>http://txomon.com/post/2012/01/11/cuaderno-de-bitacora/</link>
+      <pubDate>Wed, 11 Jan 2012 20:59:13 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2012/01/11/cuaderno-de-bitacora/</guid>
+      <description>He hecho muchas cosas hoy. Empezando ayer a las 23:50 después de llegar de casa de nerea (si tarda 10 mins ¬¬ ella sabe a que me refiero).
+Empecé a investigar sobre el algoritmo aho-corasick, que según tenía entendido, era un modelo de Luis para el algoritmo. Aunque por lo que me he enterado más tarde, solo interesa la problemática del acceso a memoria compartida que utiliza por debajo el algoritmo.</description>
+    </item>
+    
+    <item>
+      <title>Casi acabado</title>
+      <link>http://txomon.com/post/2011/09/26/casi-acabado/</link>
+      <pubDate>Mon, 26 Sep 2011 23:43:48 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/09/26/casi-acabado/</guid>
+      <description>Bueno, pues parece que ya casi he acabado el sistema de administración del control de versiones.
+Es muy muy malo, pero es una forma eficaz de poder empezar a trabajar, ya que hay otras prioridades.
+Lo que hace este script en python, es primero comprobar todos los grupos que existen en: /etc/groups y mirar cuales tienes svn en su nombre, y empiezan a partir del 9999 (el gid). Despues mira los directorios en la raiz que se halla especificado (mejor que sea en / y no por ahí suelto, por que los grupos se crean con los path completos.</description>
+    </item>
+    
+    <item>
+      <title>Redmine, Gitolite y su uso con SVN</title>
+      <link>http://txomon.com/post/2011/09/25/redmine-gitolite-y-su-uso-con-svn/</link>
+      <pubDate>Sun, 25 Sep 2011 01:25:37 +0200</pubDate>
+      
+      <guid>http://txomon.com/post/2011/09/25/redmine-gitolite-y-su-uso-con-svn/</guid>
+      <description>Me he quedado atascado en la instalación de Redmine y de Gitolite. He dejado de leer los docs de Redmine en cuanto he visto que necesitaba instalar Gitolite primero. Como la versión que tengo en mi ordenador de Gitolite tiene ya más de 1 año, me he decidido a leerme todos los docs (por cierto muy completos), y he encontrado esto:
+http://sitaramc.github.com/gitolite/doc/gitolite.rc.html#SVNSERVE
+El tag SVNSERVE no funciona, pero si buscais SVNSERVE os lleva.</description>
+    </item>
+    
+  </channel>
+</rss>

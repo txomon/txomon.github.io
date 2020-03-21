@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+        <title>Backport de mod_authnz_ldap de apache 2.4 a 2.2</title>
+
+        <link rel="stylesheet" href="/css/stylesheet.css">
+    </head>
+    <body>
+        <section id="page-title">
+            <h1><a href="/">Txomon Blog</a></h1>
+        </section>
+
+
+
+<section class="blog-post">
+    <h1>Backport de mod_authnz_ldap de apache 2.4 a 2.2</h1>
+    <div class="blog-post-subheader">
+        December 29, 2012
+    </div>
+    <div class="blog-post-content">
+        <p>Lo primero decir que ha costado dios y ayuda.</p>
+<p>Como pro-tip, la siguiente vez que queráis compilar algo, mirad si tiene algo especial en el linkado. este modulo necesita -lldap y -llber -llber (2 veces o así lo dice apr-config &ndash;with-ldap).</p>
+<p>Otro inconveniente que me he encontrado es que han hecho un cambio brutal en los modulos auth, básicamente porque ya distinguen entre authn y authz (authentication y authorization respectivamente). Y eso en el código se nota demasiado.</p>
+<p>No tengo tiempo para documentar el proceso, pero puedo decir pestes de todo tipo sobre ubuntu. Odio que no tengan una rama experimental.</p>
+
+    </div>
+</section>
+
+    </body>
+</html>
