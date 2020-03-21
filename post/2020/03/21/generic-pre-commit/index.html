@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+        <title>Generic Pre Commit</title>
+
+        <link rel="stylesheet" href="/css/stylesheet.css">
+    </head>
+    <body>
+        <section id="page-title">
+            <h1><a href="/">Txomon Blog</a></h1>
+        </section>
+
+
+
+<section class="blog-post">
+    <h1>Generic Pre Commit</h1>
+    <div class="blog-post-subheader">
+        March 21, 2020
+    </div>
+    <div class="blog-post-content">
+        <p>I have created <a href="https://github.com/txomon/pre-commit-hooks">https://github.com/txomon/pre-commit-hooks</a> as a generic way to have random code be specified directly in my git repos without having to create custom hooks. The inner working are basics, and you can actually check them there.</p>
+<p><code>pre-commit</code> relies on you adding a hooks repository and the hook id within it, which will be then linked to whatever scripts you have set in that hooks repository.</p>
+<p>My solution is to create a generic hook that uses <code>system</code> kind of hook, and just run <code>bash -c</code> with it. The arguments you put are then passed to <code>bash -c</code>.</p>
+<p>Such as in this repo:</p>
+<pre><code>repos:
+  - repo: https://github.com/txomon/pre-commit-hooks
+    rev: b7aeed3b9a00db8bcec16adcf07d237251b45947
+    hooks:
+      - id: text-command-always
+        name: Generate site with hugo
+        args:
+          - hugo &amp;&amp; git add categories/ css/ index.* sitemap.xml tags/ post/
+</code></pre><p>Where I make it so that hugo will build the site every time.</p>
+
+    </div>
+</section>
+
+    </body>
+</html>

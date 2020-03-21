@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://txomon.com/tags/automate/</loc>
+    <lastmod>2020-03-21T19:34:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://txomon.com/post/2020/03/21/generic-pre-commit/</loc>
+    <lastmod>2020-03-21T19:34:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://txomon.com/tags/hugo/</loc>
+    <lastmod>2020-03-21T19:34:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://txomon.com/</loc>
+    <lastmod>2020-03-21T19:34:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://txomon.com/post/</loc>
+    <lastmod>2020-03-21T19:34:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://txomon.com/tags/pre-commit/</loc>
+    <lastmod>2020-03-21T19:34:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://txomon.com/tags/</loc>
+    <lastmod>2020-03-21T19:34:35+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://txomon.com/tags/blog/</loc>
     <lastmod>2020-03-21T17:38:31+01:00</lastmod>
   </url>
@@ -18,27 +53,7 @@
   </url>
   
   <url>
-    <loc>http://txomon.com/tags/hugo/</loc>
-    <lastmod>2020-03-21T17:38:31+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://txomon.com/</loc>
-    <lastmod>2020-03-21T17:38:31+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://txomon.com/tags/jekyll/</loc>
-    <lastmod>2020-03-21T17:38:31+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://txomon.com/post/</loc>
-    <lastmod>2020-03-21T17:38:31+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://txomon.com/tags/</loc>
     <lastmod>2020-03-21T17:38:31+01:00</lastmod>
   </url>
   
