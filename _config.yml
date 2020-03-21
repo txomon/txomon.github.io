@@ -1,6 +1,0 @@
-name: txomon
-author: Javier Domingo Cansino
-url: http://txomon.com/
-permalink: /:year/:month/:day/:title/
-markdown: kramdown
-paginate: 10

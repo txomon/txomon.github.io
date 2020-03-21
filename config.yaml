@@ -1,0 +1,6 @@
+baseURL: http://txomon.com/
+languageCode: en-us
+title: Javier Domingo Cansino (txomon)
+params:
+  sitename: Txomon Blog
+theme: elephants

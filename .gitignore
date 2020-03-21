@@ -1,3 +1,2 @@
-_site/
-.metadata/
-blog.sublime-*
+/public
+/resources/
