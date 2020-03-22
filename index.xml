@@ -6,10 +6,22 @@
     <description>Recent content on Javier Domingo Cansino (txomon)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Mar 2020 19:34:35 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2020 16:27:18 +0100</lastBuildDate>
     
 	<atom:link href="http://txomon.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>No Experimental K3S HA for Me</title>
+      <link>http://txomon.com/post/2020/03/22/no-experimental-k3s-ha-for-me/</link>
+      <pubDate>Sun, 22 Mar 2020 16:27:18 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2020/03/22/no-experimental-k3s-ha-for-me/</guid>
+      <description>So after hitting my head a while against the HA setup with dqlite that k3s support in &amp;ldquo;Experimental&amp;rdquo; phase, had to let go after hitting https://github.com/rancher/k3s/issues/1391
+Good thing is that with only one master, things are way faster.
+I have also deployed a DaemonSet with DigitalOcean Agent on it so that I can have some metrics that don&amp;rsquo;t rely on k3s.
+apiVersion: apps/v1 kind: DaemonSet metadata: name: do-agent spec: selector: matchLabels: app: do-agent template: metadata: name: do-agent labels: app: do-agent spec: containers: - name: do-agent image: digitalocean/do-agent:stable imagePullPolicy: Always volumeMounts: - mountPath: /host/proc name: host-proc - mountPath: /host/sys name: host-sys volumes: - name: host-sys hostPath: path: /sys - name: host-proc hostPath: path: /proc BTW, the kubernetes plugin for IntelliJ based IDEs works like a charm.</description>
+    </item>
     
     <item>
       <title>Generic Pre Commit</title>

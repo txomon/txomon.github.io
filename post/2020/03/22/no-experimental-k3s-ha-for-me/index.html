@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+        <title>No Experimental K3S HA for Me</title>
+
+        <link rel="stylesheet" href="/css/stylesheet.css">
+    </head>
+    <body>
+        <section id="page-title">
+            <h1><a href="/">Txomon Blog</a></h1>
+        </section>
+
+
+
+<section class="blog-post">
+    <h1>No Experimental K3S HA for Me</h1>
+    <div class="blog-post-subheader">
+        March 22, 2020
+    </div>
+    <div class="blog-post-content">
+        <p>So after hitting my head a while against the HA setup with dqlite that k3s support in &ldquo;Experimental&rdquo; phase, had to let go after hitting <a href="https://github.com/rancher/k3s/issues/1391">https://github.com/rancher/k3s/issues/1391</a></p>
+<p>Good thing is that with only one master, things are way faster.</p>
+<p>I have also deployed a DaemonSet with DigitalOcean Agent on it so that I can have some metrics that don&rsquo;t rely on k3s.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: DaemonSet
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: do-agent
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+      <span style="color:#66d9ef">app</span>: do-agent
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">name</span>: do-agent
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">app</span>: do-agent
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+        - <span style="color:#66d9ef">name</span>: do-agent
+          <span style="color:#66d9ef">image</span>: digitalocean/do-agent:stable
+          <span style="color:#66d9ef">imagePullPolicy</span>: Always
+          <span style="color:#66d9ef">volumeMounts</span>:
+            - <span style="color:#66d9ef">mountPath</span>: /host/proc
+              <span style="color:#66d9ef">name</span>: host-proc
+            - <span style="color:#66d9ef">mountPath</span>: /host/sys
+              <span style="color:#66d9ef">name</span>: host-sys
+      <span style="color:#66d9ef">volumes</span>:
+        - <span style="color:#66d9ef">name</span>: host-sys
+          <span style="color:#66d9ef">hostPath</span>:
+            <span style="color:#66d9ef">path</span>: /sys
+        - <span style="color:#66d9ef">name</span>: host-proc
+          <span style="color:#66d9ef">hostPath</span>:
+            <span style="color:#66d9ef">path</span>: /proc
+</code></pre></div><p>BTW, the kubernetes plugin for IntelliJ based IDEs works like a charm.</p>
+
+    </div>
+</section>
+
+    </body>
+</html>
