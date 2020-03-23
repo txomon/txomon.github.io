@@ -10,7 +10,25 @@ repos:
     rev: v2.5.0
     hooks:
       - id: trailing-whitespace
+        exclude: >
+          (?x)^(
+          categories/.*|
+          css/.*|
+          index.*|
+          sitemap.xml|
+          tags/.*|
+          post/.*
+          )$
       - id: end-of-file-fixer
+        exclude: >
+          (?x)^(
+          categories/.*|
+          css/.*|
+          index.*|
+          sitemap.xml|
+          tags/.*|
+          post/.*
+          )$
       - id: check-yaml
       - id: check-added-large-files
       - id: check-byte-order-marker

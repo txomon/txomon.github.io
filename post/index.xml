@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Javier Domingo Cansino (txomon)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Mar 2020 16:27:18 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 23 Mar 2020 22:02:08 +0100</lastBuildDate>
     
 	<atom:link href="http://txomon.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gitlab Runner in Kubernetes Dind</title>
+      <link>http://txomon.com/post/2020/03/23/gitlab-runner-in-kubernetes-dind/</link>
+      <pubDate>Mon, 23 Mar 2020 22:02:08 +0100</pubDate>
+      
+      <guid>http://txomon.com/post/2020/03/23/gitlab-runner-in-kubernetes-dind/</guid>
+      <description>So today after a lot of fighting against the setup we have of gitlab runners in kubernetes, trying to get it to do dind properly, I was able to achieve a setup that wasn&amp;rsquo;t convincing.
+Learnt that:
+  Gitlab runner helm chart is extremely hacky. Like crazy hacky. No idea who designed that but they have templates that come from config maps that feed from environment variables that come from secrets that create configuration files and copy them to the worker&amp;rsquo;s workdir.</description>
+    </item>
     
     <item>
       <title>No Experimental K3S HA for Me</title>

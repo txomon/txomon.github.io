@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://txomon.com/</loc>
-    <lastmod>2020-03-22T16:27:18+01:00</lastmod>
+    <loc>http://txomon.com/post/2020/03/23/gitlab-runner-in-kubernetes-dind/</loc>
+    <lastmod>2020-03-23T22:02:08+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://txomon.com/post/2020/03/22/no-experimental-k3s-ha-for-me/</loc>
-    <lastmod>2020-03-22T16:27:18+01:00</lastmod>
+    <loc>http://txomon.com/</loc>
+    <lastmod>2020-03-23T22:02:08+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://txomon.com/post/</loc>
+    <lastmod>2020-03-23T22:02:08+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://txomon.com/post/2020/03/22/no-experimental-k3s-ha-for-me/</loc>
     <lastmod>2020-03-22T16:27:18+01:00</lastmod>
   </url>
   

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+        <title>Gitlab Runner in Kubernetes Dind</title>
+
+        <link rel="stylesheet" href="/css/stylesheet.css">
+    </head>
+    <body>
+        <section id="page-title">
+            <h1><a href="/">Txomon Blog</a></h1>
+        </section>
+
+
+
+<section class="blog-post">
+    <h1>Gitlab Runner in Kubernetes Dind</h1>
+    <div class="blog-post-subheader">
+        March 23, 2020
+    </div>
+    <div class="blog-post-content">
+        <p>So today after a lot of fighting against the setup we have of gitlab runners in kubernetes, trying to get it to do dind properly, I was able to achieve a setup that wasn&rsquo;t convincing.</p>
+<p>Learnt that:</p>
+<ul>
+<li>
+<p>Gitlab runner helm chart is extremely hacky. Like crazy hacky. No idea who designed that but they have templates that come from config maps that feed from environment variables that come from secrets that create configuration files and copy them to the worker&rsquo;s workdir.</p>
+</li>
+<li>
+<p>Docker in docker has a really weird entrypoint that complicates things if you are trying to run without TLS but only listening to localhost (which is the best less worse option for k8s)</p>
+</li>
+</ul>
+<p>You can find the details at <a href="https://gitlab.com/gitlab-org/charts/gitlab-runner/-/issues/151">https://gitlab.com/gitlab-org/charts/gitlab-runner/-/issues/151</a></p>
+
+    </div>
+</section>
+
+    </body>
+</html>
