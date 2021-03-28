@@ -6,11 +6,7 @@
     <description>Recent content in Posts on Javier Domingo Cansino (txomon)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Mar 2020 22:02:08 +0100</lastBuildDate>
-    
-	<atom:link href="http://txomon.com/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 23 Mar 2020 22:02:08 +0100</lastBuildDate><atom:link href="http://txomon.com/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Gitlab Runner in Kubernetes Dind</title>
       <link>http://txomon.com/post/2020/03/23/gitlab-runner-in-kubernetes-dind/</link>

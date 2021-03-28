@@ -5,7 +5,7 @@ repos:
       - id: text-command-always
         name: Generate site with hugo
         args:
-          - hugo && git add categories/ css/ index.* sitemap.xml tags/ post/
+          - hugo
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.5.0
     hooks:

@@ -6,11 +6,7 @@
     <description>Recent content in Hallazgos on Javier Domingo Cansino (txomon)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Nov 2012 23:40:46 +0200</lastBuildDate>
-    
-	<atom:link href="http://txomon.com/categories/hallazgos/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 29 Nov 2012 23:40:46 +0200</lastBuildDate><atom:link href="http://txomon.com/categories/hallazgos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to use nvidia and nouveau in same debian/ubuntu and don&#39;t get nut</title>
       <link>http://txomon.com/post/2012/11/29/how-to-use-nvidia-and-nouveau-in-same-debianubuntu-and-dont-get-nut/</link>

@@ -159,10 +159,10 @@ sudo chown -R administrador:www-data /smb/web #administrador is root user
 </code></pre><p>just enter root password and work done. Remember password (&lsquo;aspdofihapson1234o&hellip;') because that is what we have to put in the localconfig file.</p>
 <p>So now edit localconfig, you will just need to change:</p>
 <ul>
-<li>$webservergroup=&quot;www-data&rdquo;</li>
+<li>$webservergroup=&ldquo;www-data&rdquo;</li>
 <li>$db_pass (to the pass we used)</li>
 <li>$db_sock = &ldquo;/var/run/mysqld/mysqld.sock&rdquo;</li>
-<li>$interdiffbin=&rdquo;/usr/bin/interdiff&rdquo;</li>
+<li>$interdiffbin=&quot;/usr/bin/interdiff&quot;</li>
 </ul>
 <p>and now run sudo ./checksetup.pl, and ingress al what you need.</p>
 <p>And now, we are in theory done with the shell.</p>
